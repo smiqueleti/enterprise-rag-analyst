@@ -1,0 +1,1855 @@
+{
+  "checkpoint": 11,
+  "timestamp": "2026-09-05T22:22:52.559782+00:00",
+  "project_frozen_after_completion": true,
+  "hybrid_v1_frozen": true,
+  "dataset": {
+    "cases": 50,
+    "categories": {
+      "direct": 8,
+      "paraphrased": 7,
+      "cross_document": 7,
+      "ambiguous": 7,
+      "unsupported": 8,
+      "authorization": 6,
+      "conversational": 7
+    },
+    "generation_sample_cases": 14
+  },
+  "environment": {
+    "architecture": "arm64",
+    "platform": "macOS-26.3.1-arm64-arm-64bit-Mach-O",
+    "nvidia_key_configured": true
+  },
+  "models": {
+    "gemini_embedding": "gemini-embedding-001",
+    "nvidia_embedding": "nvidia/nemotron-3-embed-1b",
+    "current_reranker": "local RRF + BM25 + vector",
+    "nvidia_reranker": "nvidia/llama-nemotron-rerank-vl-1b-v2",
+    "gemini_generator": "gemini-3.5-flash",
+    "nvidia_generator": "meta/llama-3.3-70b-instruct",
+    "gemini_planner": "gemini-3.6-flash",
+    "nvidia_planner": "meta/llama-3.1-8b-instruct"
+  },
+  "profiles": {
+    "gemini_baseline": {
+      "name": "gemini_baseline",
+      "planner": "gemini-3.6-flash",
+      "embedding_model": "gemini-embedding-001",
+      "retriever": "Chroma hybrid_v1",
+      "reranker": "local RRF + BM25 + vector",
+      "generator": "gemini-3.5-flash",
+      "model_serving_mechanism": "Google hosted API"
+    },
+    "nvidia_embeddings": {
+      "name": "nvidia_embeddings",
+      "planner": "gemini-3.6-flash",
+      "embedding_model": "nvidia/nemotron-3-embed-1b",
+      "retriever": "separate NVIDIA Chroma collection with hybrid_v1",
+      "reranker": "local RRF + BM25 + vector",
+      "generator": "gemini-3.5-flash",
+      "model_serving_mechanism": "NVIDIA hosted API or OpenAI-compatible embedding NIM"
+    },
+    "nvidia_reranker": {
+      "name": "nvidia_reranker",
+      "planner": "gemini-3.6-flash",
+      "embedding_model": "gemini-embedding-001",
+      "retriever": "unchanged Gemini candidate generation",
+      "reranker": "nvidia/llama-nemotron-rerank-vl-1b-v2",
+      "generator": "gemini-3.5-flash",
+      "model_serving_mechanism": "NVIDIA hosted retrieval API or reranking NIM"
+    },
+    "nvidia_generation": {
+      "name": "nvidia_generation",
+      "planner": "gemini-3.6-flash",
+      "embedding_model": "gemini-embedding-001",
+      "retriever": "Chroma hybrid_v1",
+      "reranker": "local RRF + BM25 + vector",
+      "generator": "meta/llama-3.3-70b-instruct",
+      "model_serving_mechanism": "NVIDIA hosted API or OpenAI-compatible LLM NIM"
+    },
+    "nvidia_planner": {
+      "name": "nvidia_planner",
+      "planner": "meta/llama-3.1-8b-instruct",
+      "embedding_model": "gemini-embedding-001",
+      "retriever": "Chroma hybrid_v1",
+      "reranker": "local RRF + BM25 + vector",
+      "generator": "gemini-3.5-flash",
+      "model_serving_mechanism": "NVIDIA hosted API or OpenAI-compatible LLM NIM"
+    },
+    "nvidia_full": {
+      "name": "nvidia_full",
+      "planner": "meta/llama-3.1-8b-instruct",
+      "embedding_model": "nvidia/nemotron-3-embed-1b",
+      "retriever": "separate NVIDIA Chroma collection with hybrid_v1",
+      "reranker": "nvidia/llama-nemotron-rerank-vl-1b-v2",
+      "generator": "meta/llama-3.3-70b-instruct",
+      "model_serving_mechanism": "NVIDIA hosted APIs or independently deployed NIMs"
+    }
+  },
+  "gemini_expanded_embedding_and_chunking": {
+    "status": "BLOCKED",
+    "reason": "Gemini free-tier embed-content quota rejected the 200 fixed-query expanded run. No quota workaround or retuning was applied.",
+    "accepted_baseline": "Checkpoint 7 hybrid_v1 metrics remain the current-provider baseline."
+  },
+  "chunking": {
+    "300": {
+      "status": "COMPLETE",
+      "provider": "nvidia",
+      "chunk_size": 300,
+      "chunk_overlap": 120,
+      "number_of_chunks": 66,
+      "embedding_dimensionality": 2048,
+      "quality": {
+        "overall": {
+          "recall_at_1": 0.8373015873015872,
+          "recall_at_3": 0.9563492063492063,
+          "recall_at_5": 0.9801587301587301,
+          "mrr": 0.9603174603174603,
+          "full_at_5": 0.9523809523809523,
+          "supported_cases": 42
+        },
+        "by_category": {
+          "ambiguous": {
+            "recall_at_1": 1.0,
+            "recall_at_3": 1.0,
+            "recall_at_5": 1.0,
+            "mrr": 1.0,
+            "full_at_5": 1.0,
+            "supported_cases": 7
+          },
+          "authorization": {
+            "recall_at_1": 1.0,
+            "recall_at_3": 1.0,
+            "recall_at_5": 1.0,
+            "mrr": 1.0,
+            "full_at_5": 1.0,
+            "supported_cases": 6
+          },
+          "conversational": {
+            "recall_at_1": 0.9285714285714286,
+            "recall_at_3": 1.0,
+            "recall_at_5": 1.0,
+            "mrr": 1.0,
+            "full_at_5": 1.0,
+            "supported_cases": 7
+          },
+          "cross_document": {
+            "recall_at_1": 0.38095238095238093,
+            "recall_at_3": 0.7380952380952381,
+            "recall_at_5": 0.880952380952381,
+            "mrr": 0.9285714285714286,
+            "full_at_5": 0.7142857142857143,
+            "supported_cases": 7
+          },
+          "direct": {
+            "recall_at_1": 0.75,
+            "recall_at_3": 1.0,
+            "recall_at_5": 1.0,
+            "mrr": 0.8541666666666666,
+            "full_at_5": 1.0,
+            "supported_cases": 8
+          },
+          "paraphrased": {
+            "recall_at_1": 1.0,
+            "recall_at_3": 1.0,
+            "recall_at_5": 1.0,
+            "mrr": 1.0,
+            "full_at_5": 1.0,
+            "supported_cases": 7
+          }
+        }
+      },
+      "performance": {
+        "remote_index_embedding_ms": 740.1758329942822,
+        "local_indexing_ms": 29.3783750385046,
+        "indexing_throughput_chunks_per_second": 85.76393879869224,
+        "retrieval": {
+          "mean_ms": 3.57906237244606,
+          "p50_ms": 3.527084016241133,
+          "p95_ms": 4.047708003781736
+        }
+      }
+    },
+    "500": {
+      "status": "COMPLETE",
+      "provider": "nvidia",
+      "chunk_size": 500,
+      "chunk_overlap": 120,
+      "number_of_chunks": 31,
+      "embedding_dimensionality": 2048,
+      "quality": {
+        "overall": {
+          "recall_at_1": 0.8531746031746033,
+          "recall_at_3": 0.9841269841269842,
+          "recall_at_5": 1.0,
+          "mrr": 0.9642857142857143,
+          "full_at_5": 1.0,
+          "supported_cases": 42
+        },
+        "by_category": {
+          "ambiguous": {
+            "recall_at_1": 0.8571428571428571,
+            "recall_at_3": 1.0,
+            "recall_at_5": 1.0,
+            "mrr": 0.9285714285714286,
+            "full_at_5": 1.0,
+            "supported_cases": 7
+          },
+          "authorization": {
+            "recall_at_1": 1.0,
+            "recall_at_3": 1.0,
+            "recall_at_5": 1.0,
+            "mrr": 1.0,
+            "full_at_5": 1.0,
+            "supported_cases": 6
+          },
+          "conversational": {
+            "recall_at_1": 0.9285714285714286,
+            "recall_at_3": 1.0,
+            "recall_at_5": 1.0,
+            "mrr": 1.0,
+            "full_at_5": 1.0,
+            "supported_cases": 7
+          },
+          "cross_document": {
+            "recall_at_1": 0.33333333333333337,
+            "recall_at_3": 0.9047619047619048,
+            "recall_at_5": 1.0,
+            "mrr": 0.8571428571428571,
+            "full_at_5": 1.0,
+            "supported_cases": 7
+          },
+          "direct": {
+            "recall_at_1": 1.0,
+            "recall_at_3": 1.0,
+            "recall_at_5": 1.0,
+            "mrr": 1.0,
+            "full_at_5": 1.0,
+            "supported_cases": 8
+          },
+          "paraphrased": {
+            "recall_at_1": 1.0,
+            "recall_at_3": 1.0,
+            "recall_at_5": 1.0,
+            "mrr": 1.0,
+            "full_at_5": 1.0,
+            "supported_cases": 7
+          }
+        }
+      },
+      "performance": {
+        "remote_index_embedding_ms": 380.7856250205077,
+        "local_indexing_ms": 20.167334005236626,
+        "indexing_throughput_chunks_per_second": 77.31580301920046,
+        "retrieval": {
+          "mean_ms": 3.2656926184426993,
+          "p50_ms": 3.2179579720832407,
+          "p95_ms": 3.689624951221049
+        }
+      }
+    },
+    "800": {
+      "status": "COMPLETE",
+      "provider": "nvidia",
+      "chunk_size": 800,
+      "chunk_overlap": 120,
+      "number_of_chunks": 16,
+      "embedding_dimensionality": 2048,
+      "quality": {
+        "overall": {
+          "recall_at_1": 0.8373015873015872,
+          "recall_at_3": 0.9761904761904762,
+          "recall_at_5": 0.992063492063492,
+          "mrr": 0.9603174603174603,
+          "full_at_5": 0.9761904761904762,
+          "supported_cases": 42
+        },
+        "by_category": {
+          "ambiguous": {
+            "recall_at_1": 0.8571428571428571,
+            "recall_at_3": 1.0,
+            "recall_at_5": 1.0,
+            "mrr": 0.9285714285714286,
+            "full_at_5": 1.0,
+            "supported_cases": 7
+          },
+          "authorization": {
+            "recall_at_1": 1.0,
+            "recall_at_3": 1.0,
+            "recall_at_5": 1.0,
+            "mrr": 1.0,
+            "full_at_5": 1.0,
+            "supported_cases": 6
+          },
+          "conversational": {
+            "recall_at_1": 0.9285714285714286,
+            "recall_at_3": 1.0,
+            "recall_at_5": 1.0,
+            "mrr": 1.0,
+            "full_at_5": 1.0,
+            "supported_cases": 7
+          },
+          "cross_document": {
+            "recall_at_1": 0.38095238095238093,
+            "recall_at_3": 0.8571428571428571,
+            "recall_at_5": 0.9523809523809524,
+            "mrr": 0.9047619047619048,
+            "full_at_5": 0.8571428571428571,
+            "supported_cases": 7
+          },
+          "direct": {
+            "recall_at_1": 1.0,
+            "recall_at_3": 1.0,
+            "recall_at_5": 1.0,
+            "mrr": 1.0,
+            "full_at_5": 1.0,
+            "supported_cases": 8
+          },
+          "paraphrased": {
+            "recall_at_1": 0.8571428571428571,
+            "recall_at_3": 1.0,
+            "recall_at_5": 1.0,
+            "mrr": 0.9285714285714286,
+            "full_at_5": 1.0,
+            "supported_cases": 7
+          }
+        }
+      },
+      "performance": {
+        "remote_index_embedding_ms": 277.6120830094442,
+        "local_indexing_ms": 15.049416979309171,
+        "indexing_throughput_chunks_per_second": 54.67066901732842,
+        "retrieval": {
+          "mean_ms": 3.3228193130344152,
+          "p50_ms": 3.2283319742418826,
+          "p95_ms": 3.7271250039339066
+        }
+      }
+    },
+    "1200": {
+      "status": "COMPLETE",
+      "provider": "nvidia",
+      "chunk_size": 1200,
+      "chunk_overlap": 120,
+      "number_of_chunks": 12,
+      "embedding_dimensionality": 2048,
+      "quality": {
+        "overall": {
+          "recall_at_1": 0.8333333333333334,
+          "recall_at_3": 0.9761904761904762,
+          "recall_at_5": 1.0,
+          "mrr": 0.9523809523809523,
+          "full_at_5": 1.0,
+          "supported_cases": 42
+        },
+        "by_category": {
+          "ambiguous": {
+            "recall_at_1": 0.8571428571428571,
+            "recall_at_3": 1.0,
+            "recall_at_5": 1.0,
+            "mrr": 0.9285714285714286,
+            "full_at_5": 1.0,
+            "supported_cases": 7
+          },
+          "authorization": {
+            "recall_at_1": 1.0,
+            "recall_at_3": 1.0,
+            "recall_at_5": 1.0,
+            "mrr": 1.0,
+            "full_at_5": 1.0,
+            "supported_cases": 6
+          },
+          "conversational": {
+            "recall_at_1": 0.8571428571428571,
+            "recall_at_3": 1.0,
+            "recall_at_5": 1.0,
+            "mrr": 0.9285714285714286,
+            "full_at_5": 1.0,
+            "supported_cases": 7
+          },
+          "cross_document": {
+            "recall_at_1": 0.42857142857142855,
+            "recall_at_3": 0.8571428571428571,
+            "recall_at_5": 1.0,
+            "mrr": 0.9285714285714286,
+            "full_at_5": 1.0,
+            "supported_cases": 7
+          },
+          "direct": {
+            "recall_at_1": 1.0,
+            "recall_at_3": 1.0,
+            "recall_at_5": 1.0,
+            "mrr": 1.0,
+            "full_at_5": 1.0,
+            "supported_cases": 8
+          },
+          "paraphrased": {
+            "recall_at_1": 0.8571428571428571,
+            "recall_at_3": 1.0,
+            "recall_at_5": 1.0,
+            "mrr": 0.9285714285714286,
+            "full_at_5": 1.0,
+            "supported_cases": 7
+          }
+        }
+      },
+      "performance": {
+        "remote_index_embedding_ms": 231.43816704396158,
+        "local_indexing_ms": 12.1608329936862,
+        "indexing_throughput_chunks_per_second": 49.2612859582569,
+        "retrieval": {
+          "mean_ms": 3.358639079378918,
+          "p50_ms": 3.277041018009186,
+          "p95_ms": 3.9587909705005586
+        }
+      }
+    }
+  },
+  "nvidia_embeddings": {
+    "status": "COMPLETE",
+    "provider": "nvidia",
+    "chunk_size": 800,
+    "chunk_overlap": 120,
+    "number_of_chunks": 16,
+    "embedding_dimensionality": 2048,
+    "quality": {
+      "overall": {
+        "recall_at_1": 0.8373015873015872,
+        "recall_at_3": 0.9761904761904762,
+        "recall_at_5": 0.992063492063492,
+        "mrr": 0.9603174603174603,
+        "full_at_5": 0.9761904761904762,
+        "supported_cases": 42
+      },
+      "by_category": {
+        "ambiguous": {
+          "recall_at_1": 0.8571428571428571,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 0.9285714285714286,
+          "full_at_5": 1.0,
+          "supported_cases": 7
+        },
+        "authorization": {
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0,
+          "full_at_5": 1.0,
+          "supported_cases": 6
+        },
+        "conversational": {
+          "recall_at_1": 0.9285714285714286,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0,
+          "full_at_5": 1.0,
+          "supported_cases": 7
+        },
+        "cross_document": {
+          "recall_at_1": 0.38095238095238093,
+          "recall_at_3": 0.8571428571428571,
+          "recall_at_5": 0.9523809523809524,
+          "mrr": 0.9047619047619048,
+          "full_at_5": 0.8571428571428571,
+          "supported_cases": 7
+        },
+        "direct": {
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0,
+          "full_at_5": 1.0,
+          "supported_cases": 8
+        },
+        "paraphrased": {
+          "recall_at_1": 0.8571428571428571,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 0.9285714285714286,
+          "full_at_5": 1.0,
+          "supported_cases": 7
+        }
+      }
+    },
+    "performance": {
+      "remote_index_embedding_ms": 277.6120830094442,
+      "local_indexing_ms": 15.049416979309171,
+      "indexing_throughput_chunks_per_second": 54.67066901732842,
+      "retrieval": {
+        "mean_ms": 3.3228193130344152,
+        "p50_ms": 3.2283319742418826,
+        "p95_ms": 3.7271250039339066
+      }
+    },
+    "query_embedding": {
+      "mean_ms": 212.0452372249789,
+      "p50_ms": 192.2767920186743,
+      "p95_ms": 455.2092079538852
+    }
+  },
+  "reranking": {
+    "status": "COMPLETE",
+    "model": "nvidia/llama-nemotron-rerank-vl-1b-v2",
+    "candidate_generation": "identical frozen hybrid_v1 pool",
+    "current_hybrid": {
+      "overall": {
+        "recall_at_1": 0.8373015873015872,
+        "recall_at_3": 0.9761904761904762,
+        "recall_at_5": 0.992063492063492,
+        "mrr": 0.9603174603174603,
+        "full_at_5": 0.9761904761904762,
+        "supported_cases": 42
+      },
+      "by_category": {
+        "ambiguous": {
+          "recall_at_1": 0.8571428571428571,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 0.9285714285714286,
+          "full_at_5": 1.0,
+          "supported_cases": 7
+        },
+        "authorization": {
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0,
+          "full_at_5": 1.0,
+          "supported_cases": 6
+        },
+        "conversational": {
+          "recall_at_1": 0.9285714285714286,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0,
+          "full_at_5": 1.0,
+          "supported_cases": 7
+        },
+        "cross_document": {
+          "recall_at_1": 0.38095238095238093,
+          "recall_at_3": 0.8571428571428571,
+          "recall_at_5": 0.9523809523809524,
+          "mrr": 0.9047619047619048,
+          "full_at_5": 0.8571428571428571,
+          "supported_cases": 7
+        },
+        "direct": {
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0,
+          "full_at_5": 1.0,
+          "supported_cases": 8
+        },
+        "paraphrased": {
+          "recall_at_1": 0.8571428571428571,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 0.9285714285714286,
+          "full_at_5": 1.0,
+          "supported_cases": 7
+        }
+      }
+    },
+    "nvidia_neural": {
+      "overall": {
+        "recall_at_1": 0.8690476190476191,
+        "recall_at_3": 0.9444444444444444,
+        "recall_at_5": 0.9841269841269842,
+        "mrr": 0.9880952380952381,
+        "full_at_5": 0.9523809523809523,
+        "supported_cases": 42
+      },
+      "by_category": {
+        "ambiguous": {
+          "recall_at_1": 0.8571428571428571,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 0.9285714285714286,
+          "full_at_5": 1.0,
+          "supported_cases": 7
+        },
+        "authorization": {
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0,
+          "full_at_5": 1.0,
+          "supported_cases": 6
+        },
+        "conversational": {
+          "recall_at_1": 0.9285714285714286,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0,
+          "full_at_5": 1.0,
+          "supported_cases": 7
+        },
+        "cross_document": {
+          "recall_at_1": 0.42857142857142855,
+          "recall_at_3": 0.6666666666666667,
+          "recall_at_5": 0.9047619047619048,
+          "mrr": 1.0,
+          "full_at_5": 0.7142857142857143,
+          "supported_cases": 7
+        },
+        "direct": {
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0,
+          "full_at_5": 1.0,
+          "supported_cases": 8
+        },
+        "paraphrased": {
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0,
+          "full_at_5": 1.0,
+          "supported_cases": 7
+        }
+      }
+    },
+    "performance": {
+      "mean_ms": 155.97317584324628,
+      "p50_ms": 138.1882500136271,
+      "p95_ms": 230.08529102662578
+    },
+    "calls": 50,
+    "token_usage": [
+      {
+        "prompt_tokens": 823,
+        "total_tokens": 823
+      },
+      {
+        "prompt_tokens": 991,
+        "total_tokens": 991
+      },
+      {
+        "prompt_tokens": 1046,
+        "total_tokens": 1046
+      },
+      {
+        "prompt_tokens": 1064,
+        "total_tokens": 1064
+      },
+      {
+        "prompt_tokens": 1079,
+        "total_tokens": 1079
+      },
+      {
+        "prompt_tokens": 1177,
+        "total_tokens": 1177
+      },
+      {
+        "prompt_tokens": 910,
+        "total_tokens": 910
+      },
+      {
+        "prompt_tokens": 937,
+        "total_tokens": 937
+      },
+      {
+        "prompt_tokens": 1274,
+        "total_tokens": 1274
+      },
+      {
+        "prompt_tokens": 1238,
+        "total_tokens": 1238
+      },
+      {
+        "prompt_tokens": 1082,
+        "total_tokens": 1082
+      },
+      {
+        "prompt_tokens": 1281,
+        "total_tokens": 1281
+      },
+      {
+        "prompt_tokens": 1229,
+        "total_tokens": 1229
+      },
+      {
+        "prompt_tokens": 1437,
+        "total_tokens": 1437
+      },
+      {
+        "prompt_tokens": 1116,
+        "total_tokens": 1116
+      },
+      {
+        "prompt_tokens": 1290,
+        "total_tokens": 1290
+      },
+      {
+        "prompt_tokens": 1814,
+        "total_tokens": 1814
+      },
+      {
+        "prompt_tokens": 1510,
+        "total_tokens": 1510
+      },
+      {
+        "prompt_tokens": 1375,
+        "total_tokens": 1375
+      },
+      {
+        "prompt_tokens": 1722,
+        "total_tokens": 1722
+      },
+      {
+        "prompt_tokens": 1299,
+        "total_tokens": 1299
+      },
+      {
+        "prompt_tokens": 1432,
+        "total_tokens": 1432
+      },
+      {
+        "prompt_tokens": 1148,
+        "total_tokens": 1148
+      },
+      {
+        "prompt_tokens": 1458,
+        "total_tokens": 1458
+      },
+      {
+        "prompt_tokens": 1405,
+        "total_tokens": 1405
+      },
+      {
+        "prompt_tokens": 1096,
+        "total_tokens": 1096
+      },
+      {
+        "prompt_tokens": 1275,
+        "total_tokens": 1275
+      },
+      {
+        "prompt_tokens": 1068,
+        "total_tokens": 1068
+      },
+      {
+        "prompt_tokens": 765,
+        "total_tokens": 765
+      },
+      {
+        "prompt_tokens": 1255,
+        "total_tokens": 1255
+      },
+      {
+        "prompt_tokens": 1291,
+        "total_tokens": 1291
+      },
+      {
+        "prompt_tokens": 1069,
+        "total_tokens": 1069
+      },
+      {
+        "prompt_tokens": 1143,
+        "total_tokens": 1143
+      },
+      {
+        "prompt_tokens": 1386,
+        "total_tokens": 1386
+      },
+      {
+        "prompt_tokens": 1672,
+        "total_tokens": 1672
+      },
+      {
+        "prompt_tokens": 1306,
+        "total_tokens": 1306
+      },
+      {
+        "prompt_tokens": 1708,
+        "total_tokens": 1708
+      },
+      {
+        "prompt_tokens": 1402,
+        "total_tokens": 1402
+      },
+      {
+        "prompt_tokens": 879,
+        "total_tokens": 879
+      },
+      {
+        "prompt_tokens": 1534,
+        "total_tokens": 1534
+      },
+      {
+        "prompt_tokens": 1278,
+        "total_tokens": 1278
+      },
+      {
+        "prompt_tokens": 1090,
+        "total_tokens": 1090
+      },
+      {
+        "prompt_tokens": 1147,
+        "total_tokens": 1147
+      },
+      {
+        "prompt_tokens": 1491,
+        "total_tokens": 1491
+      },
+      {
+        "prompt_tokens": 1124,
+        "total_tokens": 1124
+      },
+      {
+        "prompt_tokens": 1052,
+        "total_tokens": 1052
+      },
+      {
+        "prompt_tokens": 873,
+        "total_tokens": 873
+      },
+      {
+        "prompt_tokens": 762,
+        "total_tokens": 762
+      },
+      {
+        "prompt_tokens": 964,
+        "total_tokens": 964
+      },
+      {
+        "prompt_tokens": 986,
+        "total_tokens": 986
+      }
+    ],
+    "historical_regressions": {
+      "multi_01_financial_threshold_regression": {
+        "current": {
+          "recall_at_1": 0.0,
+          "recall_at_3": 0.3333333333333333,
+          "recall_at_5": 0.6666666666666666,
+          "mrr": 0.3333333333333333,
+          "full_at_5": 0.0
+        },
+        "nvidia": {
+          "recall_at_1": 0.3333333333333333,
+          "recall_at_3": 0.3333333333333333,
+          "recall_at_5": 0.6666666666666666,
+          "mrr": 1.0,
+          "full_at_5": 0.0
+        },
+        "current_sources": [
+          "financial_approval_policy.md",
+          "customer_escalation_policy.md",
+          "shipment_sla_policy.md",
+          "customer_escalation_policy.md",
+          "financial_approval_policy.md"
+        ],
+        "nvidia_sources": [
+          "shipment_sla_policy.md",
+          "delivery_exception_policy.md",
+          "customer_escalation_policy.md",
+          "financial_approval_policy.md",
+          "dispatch_operations_sop.md"
+        ]
+      },
+      "conversation_02": {
+        "current": {
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0,
+          "full_at_5": 1.0
+        },
+        "nvidia": {
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0,
+          "full_at_5": 1.0
+        },
+        "current_sources": [
+          "customer_escalation_policy.md",
+          "customer_escalation_policy.md",
+          "shipment_sla_policy.md",
+          "customer_escalation_policy.md",
+          "financial_approval_policy.md"
+        ],
+        "nvidia_sources": [
+          "customer_escalation_policy.md",
+          "customer_escalation_policy.md",
+          "shipment_sla_policy.md",
+          "delivery_exception_policy.md",
+          "customer_escalation_policy.md"
+        ]
+      }
+    }
+  },
+  "security": {
+    "separate_embedding_collections": true,
+    "authorization_filter_applied_before_candidate_pool": true,
+    "secrets_in_results_or_traces": false
+  },
+  "generation": {
+    "gemini": {
+      "status": "PARTIAL",
+      "model": "gemini-3.5-flash",
+      "sample_design": "two preselected cases per category",
+      "quality": {
+        "overall": {
+          "cases": 1,
+          "answer_correctness": 1.0,
+          "citation_entailment": 1.0,
+          "refusal_precision": 1.0,
+          "refusal_recall": null,
+          "invalid_citation_rate": 0.0
+        },
+        "by_category": {
+          "ambiguous": {
+            "cases": 1,
+            "answer_correctness": 1.0,
+            "citation_entailment": 1.0,
+            "refusal_precision": 1.0,
+            "refusal_recall": null,
+            "invalid_citation_rate": 0.0
+          }
+        },
+        "failures": 13
+      },
+      "performance": {
+        "generation": {
+          "mean_ms": 5588.7194169918075,
+          "p50_ms": 5588.7194169918075,
+          "p95_ms": 5588.7194169918075
+        },
+        "ttft": {
+          "mean_ms": 5584.469042019919,
+          "p50_ms": 5584.469042019919,
+          "p95_ms": 5584.469042019919
+        }
+      },
+      "efficiency": {
+        "calls_minimum": 14,
+        "citation_repairs": 0,
+        "repair_rate": 0.0,
+        "token_usage": [
+          {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "total_tokens": 0
+          }
+        ]
+      },
+      "failures": [
+        {
+          "case_id": "direct_01",
+          "category": "direct",
+          "status": "FAILED",
+          "error": "GoogleAPIError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}"
+        },
+        {
+          "case_id": "direct_04",
+          "category": "direct",
+          "status": "FAILED",
+          "error": "GoogleRateLimitError: Error calling model 'gemini-3.5-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 46.467617514s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3.5-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '46s'}]}}"
+        },
+        {
+          "case_id": "paraphrased_03",
+          "category": "paraphrased",
+          "status": "FAILED",
+          "error": "GoogleRateLimitError: Error calling model 'gemini-3.5-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 46.374843561s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '46s'}]}}"
+        },
+        {
+          "case_id": "paraphrased_04",
+          "category": "paraphrased",
+          "status": "FAILED",
+          "error": "GoogleRateLimitError: Error calling model 'gemini-3.5-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 46.278153938s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '46s'}]}}"
+        },
+        {
+          "case_id": "cross_01",
+          "category": "cross_document",
+          "status": "FAILED",
+          "error": "GoogleRateLimitError: Error calling model 'gemini-3.5-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 46.169564618s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '46s'}]}}"
+        },
+        {
+          "case_id": "multi_01_financial_threshold_regression",
+          "category": "cross_document",
+          "status": "FAILED",
+          "error": "GoogleRateLimitError: Error calling model 'gemini-3.5-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 46.083322532s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3.5-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '46s'}]}}"
+        },
+        {
+          "case_id": "ambiguous_02",
+          "category": "ambiguous",
+          "status": "FAILED",
+          "error": "GoogleRateLimitError: Error calling model 'gemini-3.5-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 45.989464802s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3.5-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '45s'}]}}"
+        },
+        {
+          "case_id": "unsupported_01",
+          "category": "unsupported",
+          "status": "FAILED",
+          "error": "GoogleRateLimitError: Error calling model 'gemini-3.5-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 40.311513156s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '40s'}]}}"
+        },
+        {
+          "case_id": "unsupported_06",
+          "category": "unsupported",
+          "status": "FAILED",
+          "error": "GoogleRateLimitError: Error calling model 'gemini-3.5-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 40.19721562s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '40s'}]}}"
+        },
+        {
+          "case_id": "authorization_01",
+          "category": "authorization",
+          "status": "FAILED",
+          "error": "GoogleRateLimitError: Error calling model 'gemini-3.5-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 40.10814084s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '40s'}]}}"
+        },
+        {
+          "case_id": "authorization_04",
+          "category": "authorization",
+          "status": "FAILED",
+          "error": "GoogleRateLimitError: Error calling model 'gemini-3.5-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 40.00948081s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '40s'}]}}"
+        },
+        {
+          "case_id": "conversation_01",
+          "category": "conversational",
+          "status": "FAILED",
+          "error": "GoogleRateLimitError: Error calling model 'gemini-3.5-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 39.910170162s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '39s'}]}}"
+        },
+        {
+          "case_id": "conversation_03",
+          "category": "conversational",
+          "status": "FAILED",
+          "error": "GoogleRateLimitError: Error calling model 'gemini-3.5-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\\nPlease retry in 39.824287013s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '39s'}]}}"
+        }
+      ],
+      "provider_errors": {
+        "temporary_unavailable": 1,
+        "quota_or_rate_limit": 12
+      }
+    },
+    "nvidia": {
+      "status": "PARTIAL",
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "sample_design": "two preselected cases per category",
+      "quality": {
+        "overall": {
+          "cases": 13,
+          "answer_correctness": 0.09090909090909091,
+          "citation_entailment": 1.0,
+          "refusal_precision": 0.16666666666666666,
+          "refusal_recall": 1.0,
+          "invalid_citation_rate": 0.0
+        },
+        "by_category": {
+          "ambiguous": {
+            "cases": 2,
+            "answer_correctness": 0.0,
+            "citation_entailment": 1.0,
+            "refusal_precision": 0.0,
+            "refusal_recall": null,
+            "invalid_citation_rate": 0.0
+          },
+          "authorization": {
+            "cases": 2,
+            "answer_correctness": 0.0,
+            "citation_entailment": 1.0,
+            "refusal_precision": 0.0,
+            "refusal_recall": null,
+            "invalid_citation_rate": 0.0
+          },
+          "conversational": {
+            "cases": 2,
+            "answer_correctness": 0.0,
+            "citation_entailment": 1.0,
+            "refusal_precision": 0.0,
+            "refusal_recall": null,
+            "invalid_citation_rate": 0.0
+          },
+          "cross_document": {
+            "cases": 2,
+            "answer_correctness": 0.0,
+            "citation_entailment": 1.0,
+            "refusal_precision": 0.0,
+            "refusal_recall": null,
+            "invalid_citation_rate": 0.0
+          },
+          "direct": {
+            "cases": 1,
+            "answer_correctness": 0.0,
+            "citation_entailment": 1.0,
+            "refusal_precision": 0.0,
+            "refusal_recall": null,
+            "invalid_citation_rate": 0.0
+          },
+          "paraphrased": {
+            "cases": 2,
+            "answer_correctness": 0.5,
+            "citation_entailment": 1.0,
+            "refusal_precision": 0.0,
+            "refusal_recall": null,
+            "invalid_citation_rate": 0.0
+          },
+          "unsupported": {
+            "cases": 2,
+            "answer_correctness": null,
+            "citation_entailment": null,
+            "refusal_precision": 1.0,
+            "refusal_recall": 1.0,
+            "invalid_citation_rate": null
+          }
+        },
+        "failures": 1
+      },
+      "performance": {
+        "generation": {
+          "mean_ms": 8871.49694245846,
+          "p50_ms": 4370.760084013455,
+          "p95_ms": 52062.928042025305
+        },
+        "ttft": {
+          "mean_ms": 4831.5927468446225,
+          "p50_ms": 1982.5826670276,
+          "p95_ms": 32195.981374999974
+        }
+      },
+      "efficiency": {
+        "calls_minimum": 14,
+        "citation_repairs": 11,
+        "repair_rate": 0.7857142857142857,
+        "token_usage": [
+          {
+            "prompt_tokens": 2222,
+            "completion_tokens": 457,
+            "total_tokens": 2679
+          },
+          {
+            "prompt_tokens": 2068,
+            "completion_tokens": 402,
+            "total_tokens": 2470
+          },
+          {
+            "prompt_tokens": 1109,
+            "completion_tokens": 99,
+            "total_tokens": 1208
+          },
+          {
+            "prompt_tokens": 2254,
+            "completion_tokens": 976,
+            "total_tokens": 3230
+          },
+          {
+            "prompt_tokens": 2555,
+            "completion_tokens": 2847,
+            "total_tokens": 5402
+          },
+          {
+            "prompt_tokens": 2238,
+            "completion_tokens": 301,
+            "total_tokens": 2539
+          },
+          {
+            "prompt_tokens": 2047,
+            "completion_tokens": 399,
+            "total_tokens": 2446
+          },
+          {
+            "prompt_tokens": 1160,
+            "completion_tokens": 83,
+            "total_tokens": 1243
+          },
+          {
+            "prompt_tokens": 984,
+            "completion_tokens": 308,
+            "total_tokens": 1292
+          },
+          {
+            "prompt_tokens": 2142,
+            "completion_tokens": 307,
+            "total_tokens": 2449
+          },
+          {
+            "prompt_tokens": 2073,
+            "completion_tokens": 654,
+            "total_tokens": 2727
+          },
+          {
+            "prompt_tokens": 2217,
+            "completion_tokens": 878,
+            "total_tokens": 3095
+          },
+          {
+            "prompt_tokens": 2117,
+            "completion_tokens": 929,
+            "total_tokens": 3046
+          }
+        ]
+      },
+      "failures": [
+        {
+          "case_id": "direct_01",
+          "category": "direct",
+          "status": "FAILED",
+          "error": "HTTPStatusError: Server error '503 Service Unavailable' for url 'https://integrate.api.nvidia.com/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503"
+        }
+      ],
+      "provider_errors": {
+        "IndexError": 14,
+        "temporary_unavailable": 1
+      }
+    }
+  },
+  "planning": {
+    "nvidia": {
+      "status": "COMPLETE",
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "quality": {
+        "overall": {
+          "recall_at_1": 0.5793650793650793,
+          "recall_at_3": 0.8095238095238095,
+          "recall_at_5": 0.9484126984126985,
+          "mrr": 0.7718253968253967,
+          "full_at_5": 0.9047619047619048,
+          "supported_cases": 42
+        },
+        "by_category": {
+          "ambiguous": {
+            "recall_at_1": 0.2857142857142857,
+            "recall_at_3": 0.5714285714285714,
+            "recall_at_5": 0.8571428571428571,
+            "mrr": 0.5,
+            "full_at_5": 0.8571428571428571,
+            "supported_cases": 7
+          },
+          "authorization": {
+            "recall_at_1": 1.0,
+            "recall_at_3": 1.0,
+            "recall_at_5": 1.0,
+            "mrr": 1.0,
+            "full_at_5": 1.0,
+            "supported_cases": 6
+          },
+          "conversational": {
+            "recall_at_1": 0.6428571428571429,
+            "recall_at_3": 0.9285714285714286,
+            "recall_at_5": 1.0,
+            "mrr": 0.8333333333333333,
+            "full_at_5": 1.0,
+            "supported_cases": 7
+          },
+          "cross_document": {
+            "recall_at_1": 0.2619047619047619,
+            "recall_at_3": 0.5,
+            "recall_at_5": 0.8333333333333333,
+            "mrr": 0.7142857142857143,
+            "full_at_5": 0.5714285714285714,
+            "supported_cases": 7
+          },
+          "direct": {
+            "recall_at_1": 0.875,
+            "recall_at_3": 1.0,
+            "recall_at_5": 1.0,
+            "mrr": 0.9166666666666666,
+            "full_at_5": 1.0,
+            "supported_cases": 8
+          },
+          "paraphrased": {
+            "recall_at_1": 0.42857142857142855,
+            "recall_at_3": 0.8571428571428571,
+            "recall_at_5": 1.0,
+            "mrr": 0.6785714285714286,
+            "full_at_5": 1.0,
+            "supported_cases": 7
+          }
+        }
+      },
+      "performance": {
+        "mean_ms": 8095.051259939792,
+        "p50_ms": 6283.820915967226,
+        "p95_ms": 17756.86941598542
+      },
+      "invalid_queries": 0,
+      "duplicate_queries": 0,
+      "calls": 50,
+      "provider_errors": {}
+    },
+    "gemini": {
+      "status": "PARTIAL",
+      "model": "gemini-3.6-flash",
+      "quality": {
+        "overall": {
+          "recall_at_1": null,
+          "recall_at_3": null,
+          "recall_at_5": null,
+          "mrr": null,
+          "full_at_5": null,
+          "supported_cases": 0
+        },
+        "by_category": {}
+      },
+      "performance": {
+        "mean_ms": null,
+        "p50_ms": null,
+        "p95_ms": null
+      },
+      "invalid_queries": 0,
+      "duplicate_queries": 0,
+      "calls": 50,
+      "provider_errors": {
+        "quota_or_rate_limit": 50
+      }
+    }
+  },
+  "matched_legacy_embedding_comparison": {
+    "cases": 19,
+    "current_gemini": {
+      "recall_at_1": 0.6296296296296297,
+      "recall_at_3": 0.7962962962962963,
+      "recall_at_5": 1.0,
+      "mrr": 0.9444444444444444,
+      "full_at_5": 1.0
+    },
+    "nvidia": {
+      "name": "nvidia_embeddings",
+      "status": "COMPLETE",
+      "collection": "atlas_logistics_nvidia_nvidia_nemotron_3_embed_1b",
+      "embedding_model": "nvidia/nemotron-3-embed-1b",
+      "embedding_dimensionality": 2048,
+      "quality": {
+        "recall_at_1": 0.462962962962963,
+        "recall_at_3": 0.8148148148148148,
+        "recall_at_5": 0.9629629629629629,
+        "mrr": 0.8333333333333334,
+        "full_at_5": 0.8888888888888888
+      },
+      "performance": {
+        "embedding_p50_ms": 81.12799999071285,
+        "embedding_p95_ms": 105.78133398666978,
+        "retrieval_p50_ms": 1.1623749742284417,
+        "retrieval_p95_ms": 2.7199580217711627,
+        "index_embedding_ms": 370.99520897027105,
+        "local_index_ms": 25.107125053182244,
+        "indexing_throughput_chunks_per_second": 40.39360191968128
+      },
+      "reliability": {
+        "failures": 0,
+        "timeouts": 0,
+        "retries": 0
+      }
+    }
+  },
+  "matched_legacy_reranker_comparison": {
+    "name": "nvidia_reranker",
+    "status": "COMPLETE",
+    "model": "nvidia/llama-nemotron-rerank-vl-1b-v2",
+    "quality": {
+      "recall_at_1": 0.6666666666666666,
+      "recall_at_3": 0.8333333333333334,
+      "recall_at_5": 0.9629629629629629,
+      "mrr": 1.0,
+      "full_at_5": 0.8888888888888888
+    },
+    "regression_cases": {
+      "financial_rank": 3,
+      "notification_rank": 4
+    },
+    "performance": {
+      "reranking_p50_ms": 140.6753750052303,
+      "reranking_p95_ms": 350.8963749627583
+    },
+    "efficiency": {
+      "calls": 19,
+      "token_usage": [
+        {
+          "prompt_tokens": 1283,
+          "total_tokens": 1283
+        },
+        {
+          "prompt_tokens": 1227,
+          "total_tokens": 1227
+        },
+        {
+          "prompt_tokens": 956,
+          "total_tokens": 956
+        },
+        {
+          "prompt_tokens": 1513,
+          "total_tokens": 1513
+        },
+        {
+          "prompt_tokens": 1554,
+          "total_tokens": 1554
+        },
+        {
+          "prompt_tokens": 1721,
+          "total_tokens": 1721
+        },
+        {
+          "prompt_tokens": 1419,
+          "total_tokens": 1419
+        },
+        {
+          "prompt_tokens": 1525,
+          "total_tokens": 1525
+        },
+        {
+          "prompt_tokens": 1047,
+          "total_tokens": 1047
+        },
+        {
+          "prompt_tokens": 716,
+          "total_tokens": 716
+        },
+        {
+          "prompt_tokens": 1024,
+          "total_tokens": 1024
+        },
+        {
+          "prompt_tokens": 866,
+          "total_tokens": 866
+        },
+        {
+          "prompt_tokens": 1164,
+          "total_tokens": 1164
+        },
+        {
+          "prompt_tokens": 1298,
+          "total_tokens": 1298
+        },
+        {
+          "prompt_tokens": 1295,
+          "total_tokens": 1295
+        },
+        {
+          "prompt_tokens": 917,
+          "total_tokens": 917
+        },
+        {
+          "prompt_tokens": 1541,
+          "total_tokens": 1541
+        },
+        {
+          "prompt_tokens": 1448,
+          "total_tokens": 1448
+        },
+        {
+          "prompt_tokens": 1186,
+          "total_tokens": 1186
+        }
+      ]
+    },
+    "reliability": {
+      "failures": 0,
+      "timeouts": 0,
+      "retries": 0
+    }
+  },
+  "harness_corrections": {
+    "nvidia_stream_parser": "The first NVIDIA generation attempt rejected usage-only SSE events. The parser was fixed, tested, and the NVIDIA run was repeated. Both attempts remain in the trace.",
+    "planner_duplicate_counter": "Duplicates are counted only within the final four atomic queries, not between the standalone field and its intentional copy in search_queries."
+  },
+  "chunking_decision": {
+    "selected_size": 500,
+    "production_runtime_changed": false,
+    "reason": "500 characters achieved Recall@5 1.000, the highest MRR among the full-recall configurations, and Full@5 1.000. The production index was not rebuilt because the current Gemini embedding quota blocked a safe synchronized migration."
+  },
+  "quality_summary": {
+    "accepted_current_baseline": {
+      "recall_at_5": 1.0,
+      "mrr": 0.9444444444444444,
+      "answer_correctness": 1.0,
+      "refusal_precision": 1.0,
+      "refusal_recall": 1.0,
+      "citation_entailment": 1.0
+    },
+    "expanded_nvidia_embedding_current_rerank": {
+      "overall": {
+        "recall_at_1": 0.8373015873015872,
+        "recall_at_3": 0.9761904761904762,
+        "recall_at_5": 0.992063492063492,
+        "mrr": 0.9603174603174603,
+        "full_at_5": 0.9761904761904762,
+        "supported_cases": 42
+      },
+      "by_category": {
+        "ambiguous": {
+          "recall_at_1": 0.8571428571428571,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 0.9285714285714286,
+          "full_at_5": 1.0,
+          "supported_cases": 7
+        },
+        "authorization": {
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0,
+          "full_at_5": 1.0,
+          "supported_cases": 6
+        },
+        "conversational": {
+          "recall_at_1": 0.9285714285714286,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0,
+          "full_at_5": 1.0,
+          "supported_cases": 7
+        },
+        "cross_document": {
+          "recall_at_1": 0.38095238095238093,
+          "recall_at_3": 0.8571428571428571,
+          "recall_at_5": 0.9523809523809524,
+          "mrr": 0.9047619047619048,
+          "full_at_5": 0.8571428571428571,
+          "supported_cases": 7
+        },
+        "direct": {
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0,
+          "full_at_5": 1.0,
+          "supported_cases": 8
+        },
+        "paraphrased": {
+          "recall_at_1": 0.8571428571428571,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 0.9285714285714286,
+          "full_at_5": 1.0,
+          "supported_cases": 7
+        }
+      }
+    },
+    "expanded_nvidia_generation_sample": {
+      "overall": {
+        "cases": 13,
+        "answer_correctness": 0.09090909090909091,
+        "citation_entailment": 1.0,
+        "refusal_precision": 0.16666666666666666,
+        "refusal_recall": 1.0,
+        "invalid_citation_rate": 0.0
+      },
+      "by_category": {
+        "ambiguous": {
+          "cases": 2,
+          "answer_correctness": 0.0,
+          "citation_entailment": 1.0,
+          "refusal_precision": 0.0,
+          "refusal_recall": null,
+          "invalid_citation_rate": 0.0
+        },
+        "authorization": {
+          "cases": 2,
+          "answer_correctness": 0.0,
+          "citation_entailment": 1.0,
+          "refusal_precision": 0.0,
+          "refusal_recall": null,
+          "invalid_citation_rate": 0.0
+        },
+        "conversational": {
+          "cases": 2,
+          "answer_correctness": 0.0,
+          "citation_entailment": 1.0,
+          "refusal_precision": 0.0,
+          "refusal_recall": null,
+          "invalid_citation_rate": 0.0
+        },
+        "cross_document": {
+          "cases": 2,
+          "answer_correctness": 0.0,
+          "citation_entailment": 1.0,
+          "refusal_precision": 0.0,
+          "refusal_recall": null,
+          "invalid_citation_rate": 0.0
+        },
+        "direct": {
+          "cases": 1,
+          "answer_correctness": 0.0,
+          "citation_entailment": 1.0,
+          "refusal_precision": 0.0,
+          "refusal_recall": null,
+          "invalid_citation_rate": 0.0
+        },
+        "paraphrased": {
+          "cases": 2,
+          "answer_correctness": 0.5,
+          "citation_entailment": 1.0,
+          "refusal_precision": 0.0,
+          "refusal_recall": null,
+          "invalid_citation_rate": 0.0
+        },
+        "unsupported": {
+          "cases": 2,
+          "answer_correctness": null,
+          "citation_entailment": null,
+          "refusal_precision": 1.0,
+          "refusal_recall": 1.0,
+          "invalid_citation_rate": null
+        }
+      },
+      "failures": 1
+    }
+  },
+  "component_matrix": {
+    "embeddings": {
+      "current": {
+        "recall_at_1": 0.6296296296296297,
+        "recall_at_3": 0.7962962962962963,
+        "recall_at_5": 1.0,
+        "mrr": 0.9444444444444444,
+        "full_at_5": 1.0
+      },
+      "nvidia": {
+        "recall_at_1": 0.462962962962963,
+        "recall_at_3": 0.8148148148148148,
+        "recall_at_5": 0.9629629629629629,
+        "mrr": 0.8333333333333334,
+        "full_at_5": 0.8888888888888888
+      },
+      "winner": "Gemini/current",
+      "reason": "On the matched 19-case set, NVIDIA lowered Recall@5 and MRR. Its latency advantage does not pass the quality gate."
+    },
+    "reranking": {
+      "current": {
+        "recall_at_1": 0.8373015873015872,
+        "recall_at_3": 0.9761904761904762,
+        "recall_at_5": 0.992063492063492,
+        "mrr": 0.9603174603174603,
+        "full_at_5": 0.9761904761904762,
+        "supported_cases": 42
+      },
+      "nvidia": {
+        "recall_at_1": 0.8690476190476191,
+        "recall_at_3": 0.9444444444444444,
+        "recall_at_5": 0.9841269841269842,
+        "mrr": 0.9880952380952381,
+        "full_at_5": 0.9523809523809523,
+        "supported_cases": 42
+      },
+      "winner": "Current hybrid",
+      "reason": "NVIDIA improved rank 1 and MRR but reduced Recall@3, Recall@5, and Full@5 while adding hosted inference latency."
+    },
+    "generation": {
+      "current": {
+        "overall": {
+          "cases": 1,
+          "answer_correctness": 1.0,
+          "citation_entailment": 1.0,
+          "refusal_precision": 1.0,
+          "refusal_recall": null,
+          "invalid_citation_rate": 0.0
+        },
+        "by_category": {
+          "ambiguous": {
+            "cases": 1,
+            "answer_correctness": 1.0,
+            "citation_entailment": 1.0,
+            "refusal_precision": 1.0,
+            "refusal_recall": null,
+            "invalid_citation_rate": 0.0
+          }
+        },
+        "failures": 13
+      },
+      "nvidia": {
+        "overall": {
+          "cases": 13,
+          "answer_correctness": 0.09090909090909091,
+          "citation_entailment": 1.0,
+          "refusal_precision": 0.16666666666666666,
+          "refusal_recall": 1.0,
+          "invalid_citation_rate": 0.0
+        },
+        "by_category": {
+          "ambiguous": {
+            "cases": 2,
+            "answer_correctness": 0.0,
+            "citation_entailment": 1.0,
+            "refusal_precision": 0.0,
+            "refusal_recall": null,
+            "invalid_citation_rate": 0.0
+          },
+          "authorization": {
+            "cases": 2,
+            "answer_correctness": 0.0,
+            "citation_entailment": 1.0,
+            "refusal_precision": 0.0,
+            "refusal_recall": null,
+            "invalid_citation_rate": 0.0
+          },
+          "conversational": {
+            "cases": 2,
+            "answer_correctness": 0.0,
+            "citation_entailment": 1.0,
+            "refusal_precision": 0.0,
+            "refusal_recall": null,
+            "invalid_citation_rate": 0.0
+          },
+          "cross_document": {
+            "cases": 2,
+            "answer_correctness": 0.0,
+            "citation_entailment": 1.0,
+            "refusal_precision": 0.0,
+            "refusal_recall": null,
+            "invalid_citation_rate": 0.0
+          },
+          "direct": {
+            "cases": 1,
+            "answer_correctness": 0.0,
+            "citation_entailment": 1.0,
+            "refusal_precision": 0.0,
+            "refusal_recall": null,
+            "invalid_citation_rate": 0.0
+          },
+          "paraphrased": {
+            "cases": 2,
+            "answer_correctness": 0.5,
+            "citation_entailment": 1.0,
+            "refusal_precision": 0.0,
+            "refusal_recall": null,
+            "invalid_citation_rate": 0.0
+          },
+          "unsupported": {
+            "cases": 2,
+            "answer_correctness": null,
+            "citation_entailment": null,
+            "refusal_precision": 1.0,
+            "refusal_recall": 1.0,
+            "invalid_citation_rate": null
+          }
+        },
+        "failures": 1
+      },
+      "winner": "Gemini/current retained",
+      "reason": "NVIDIA preserved safe refusal but only 9.1% of supported completed cases passed answer correctness after strict citation validation. The live Gemini comparison was quota-limited, so the accepted current quality baseline remains controlling."
+    },
+    "planning": {
+      "current": {
+        "status": "PARTIAL",
+        "model": "gemini-3.6-flash",
+        "quality": {
+          "overall": {
+            "recall_at_1": null,
+            "recall_at_3": null,
+            "recall_at_5": null,
+            "mrr": null,
+            "full_at_5": null,
+            "supported_cases": 0
+          },
+          "by_category": {}
+        },
+        "performance": {
+          "mean_ms": null,
+          "p50_ms": null,
+          "p95_ms": null
+        },
+        "invalid_queries": 0,
+        "duplicate_queries": 0,
+        "calls": 50,
+        "provider_errors": {
+          "quota_or_rate_limit": 50
+        }
+      },
+      "nvidia": {
+        "status": "COMPLETE",
+        "model": "nvidia/nemotron-3-super-120b-a12b",
+        "quality": {
+          "overall": {
+            "recall_at_1": 0.5793650793650793,
+            "recall_at_3": 0.8095238095238095,
+            "recall_at_5": 0.9484126984126985,
+            "mrr": 0.7718253968253967,
+            "full_at_5": 0.9047619047619048,
+            "supported_cases": 42
+          },
+          "by_category": {
+            "ambiguous": {
+              "recall_at_1": 0.2857142857142857,
+              "recall_at_3": 0.5714285714285714,
+              "recall_at_5": 0.8571428571428571,
+              "mrr": 0.5,
+              "full_at_5": 0.8571428571428571,
+              "supported_cases": 7
+            },
+            "authorization": {
+              "recall_at_1": 1.0,
+              "recall_at_3": 1.0,
+              "recall_at_5": 1.0,
+              "mrr": 1.0,
+              "full_at_5": 1.0,
+              "supported_cases": 6
+            },
+            "conversational": {
+              "recall_at_1": 0.6428571428571429,
+              "recall_at_3": 0.9285714285714286,
+              "recall_at_5": 1.0,
+              "mrr": 0.8333333333333333,
+              "full_at_5": 1.0,
+              "supported_cases": 7
+            },
+            "cross_document": {
+              "recall_at_1": 0.2619047619047619,
+              "recall_at_3": 0.5,
+              "recall_at_5": 0.8333333333333333,
+              "mrr": 0.7142857142857143,
+              "full_at_5": 0.5714285714285714,
+              "supported_cases": 7
+            },
+            "direct": {
+              "recall_at_1": 0.875,
+              "recall_at_3": 1.0,
+              "recall_at_5": 1.0,
+              "mrr": 0.9166666666666666,
+              "full_at_5": 1.0,
+              "supported_cases": 8
+            },
+            "paraphrased": {
+              "recall_at_1": 0.42857142857142855,
+              "recall_at_3": 0.8571428571428571,
+              "recall_at_5": 1.0,
+              "mrr": 0.6785714285714286,
+              "full_at_5": 1.0,
+              "supported_cases": 7
+            }
+          }
+        },
+        "performance": {
+          "mean_ms": 8095.051259939792,
+          "p50_ms": 6283.820915967226,
+          "p95_ms": 17756.86941598542
+        },
+        "invalid_queries": 0,
+        "duplicate_queries": 0,
+        "calls": 50,
+        "provider_errors": {}
+      },
+      "winner": "Gemini/current retained",
+      "reason": "The NVIDIA planner produced lower downstream quality than the fixed-query reference and had multi-second latency. Gemini could not complete the direct comparison because of quota exhaustion."
+    }
+  },
+  "final_architecture": {
+    "planner": "Gemini current planner",
+    "embeddings": "Gemini embedding",
+    "chunking": "500-character target after a controlled reindex; current runtime remains 800 until then",
+    "vector_database": "Chroma with separate model-bound collections",
+    "fusion": "RRF",
+    "reranker": "local BM25 + vector hybrid",
+    "generator": "Gemini current generator",
+    "citation_validation": "deterministic claim-level validator with one bounded repair",
+    "retrieval_profile": "hybrid_v1 unchanged"
+  },
+  "business_controls": {
+    "citation_entailment": "Auditable policy answers",
+    "safe_refusal": "Reduced unsupported decision guidance",
+    "tenant_filtering": "Information-access isolation",
+    "admission_control": "Predictable behavior under saturation",
+    "circuit_breaker": "Resilience to upstream provider failure",
+    "recall_at_5_and_full_at_5": "Complete policy evidence for governed operational decisions"
+  },
+  "remaining_limitations": [
+    "Gemini free-tier quotas blocked the expanded embedding, generation, and planner comparison.",
+    "Generation used a fixed 14-case stratified sample, not all 50 questions.",
+    "The corpus has only five fictional documents and 12 to 66 chunks depending on configuration.",
+    "NVIDIA hosted trial behavior does not predict dedicated NIM throughput or cost.",
+    "The deterministic citation entailment check is lexical and can reject valid paraphrases.",
+    "The 500-character chunking winner has not been promoted to the runtime index."
+  ]
+}

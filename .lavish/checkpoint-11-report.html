@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en" data-theme="luxury">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atlas RAG - Checkpoint 11 Evidence Closure</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@5.5.19/daisyui.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@5.5.19/themes.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.2.4/dist/index.global.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    :where(.grid, .flex) > * { min-width: 0; }
+    :where(p, h1, h2, h3, li, td, th, .badge) { overflow-wrap: anywhere; }
+    :where(svg) { width: 100%; max-width: 100%; height: auto; }
+    body { background: radial-gradient(circle at 90% 0%, color-mix(in oklab, var(--color-primary) 12%, transparent), transparent 34%), var(--color-base-300); }
+    .eyebrow { letter-spacing: .16em; text-transform: uppercase; font-size: .72rem; font-weight: 800; color: var(--color-primary); }
+    .metric-value { font-variant-numeric: tabular-nums; letter-spacing: -.04em; }
+    .decision-rule { border-left: 3px solid var(--color-primary); }
+    .architecture-card { display: block; }
+    .architecture-figure { display: block; }
+    .table :where(th, td) { white-space: normal; vertical-align: top; }
+    .svg-label { font: 700 15px ui-sans-serif, system-ui, sans-serif; fill: currentColor; }
+    .svg-sub { font: 500 11px ui-sans-serif, system-ui, sans-serif; fill: currentColor; opacity: .7; }
+    .node { fill: var(--color-base-100); stroke: color-mix(in oklab, var(--color-primary) 48%, var(--color-base-content)); stroke-width: 1.5; }
+    .node-muted { fill: var(--color-base-200); stroke: color-mix(in oklab, var(--color-base-content) 25%, transparent); stroke-width: 1.2; }
+    .edge { stroke: color-mix(in oklab, var(--color-primary) 70%, var(--color-base-content)); stroke-width: 2; fill: none; marker-end: url(#arrow); }
+  </style>
+</head>
+<body class="text-base-content">
+  <main class="mx-auto max-w-7xl p-4 sm:p-7 lg:p-10">
+    <header class="hero overflow-hidden rounded-box border border-base-content/10 bg-base-100 shadow-2xl">
+      <div class="hero-content w-full flex-col items-start py-10 lg:flex-row lg:items-end lg:justify-between lg:py-16">
+        <div class="max-w-3xl">
+          <div class="eyebrow">Atlas AI Analyst</div>
+          <h1 class="mt-3 text-4xl font-black tracking-tight sm:text-6xl">Benchmark evidence closed.</h1>
+          <p class="mt-5 max-w-2xl text-lg text-base-content/70">Checkpoint 11 tested NVIDIA components independently against the frozen retrieval baseline. No NVIDIA replacement cleared the combined quality and operational gate.</p>
+        </div>
+        <div class="mt-6 flex flex-wrap gap-2 lg:mt-0 lg:justify-end">
+          <span class="badge badge-success badge-lg">50 fixed cases</span>
+          <span class="badge badge-primary badge-lg">hybrid_v1 frozen</span>
+          <span class="badge badge-outline badge-lg">36 tests pass</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4" aria-label="Key decisions">
+      <article class="card card-border bg-base-100"><div class="card-body"><p class="eyebrow">Chunking winner</p><div class="metric-value text-5xl font-black">500</div><p class="text-base-content/65">Recall@5 1.000<br>MRR 0.964<br>Full@5 1.000</p></div></article>
+      <article class="card card-border bg-base-100"><div class="card-body"><p class="eyebrow">Reranking</p><div class="text-2xl font-black">Keep local hybrid</div><p class="text-base-content/65">Neural MRR improved, but complete evidence regressed.</p></div></article>
+      <article class="card card-border bg-base-100"><div class="card-body"><p class="eyebrow">Generation</p><div class="metric-value text-5xl font-black">9.1%</div><p class="text-base-content/65">NVIDIA supported-answer correctness after strict validation.</p></div></article>
+      <article class="card card-border bg-base-100"><div class="card-body"><p class="eyebrow">Planner p95</p><div class="metric-value text-5xl font-black">17.76s</div><p class="text-base-content/65">Downstream Recall@5 0.948 and MRR 0.772.</p></div></article>
+    </section>
+
+    <section class="mt-6 grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,.85fr)]">
+      <article class="card card-border bg-base-100">
+        <div class="card-body architecture-card">
+          <p class="eyebrow">Final architecture decision</p>
+          <h2 class="card-title text-2xl">A quality-led current stack</h2>
+          <figure class="architecture-figure mt-4 rounded-box bg-base-200 p-4 text-base-content" aria-labelledby="architecture-caption">
+            <svg viewBox="0 0 760 260" role="img" aria-labelledby="architecture-title architecture-desc">
+              <title id="architecture-title">Recommended Atlas RAG component flow</title>
+              <desc id="architecture-desc">Gemini planning and embeddings feed Chroma, RRF and local hybrid reranking, then Gemini generation and citation validation.</desc>
+              <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"></path></marker></defs>
+              <g id="planner"><title>Current Gemini planner retained</title><rect class="node" x="18" y="34" width="120" height="62" rx="13"></rect><text class="svg-label" x="78" y="61" text-anchor="middle">Gemini</text><text class="svg-sub" x="78" y="79" text-anchor="middle">planner</text></g>
+              <path id="edge-planner-embed" class="edge" d="M138 65 H166"></path>
+              <g id="embeddings"><title>Current Gemini embeddings retained</title><rect class="node" x="168" y="34" width="120" height="62" rx="13"></rect><text class="svg-label" x="228" y="61" text-anchor="middle">Gemini</text><text class="svg-sub" x="228" y="79" text-anchor="middle">embeddings</text></g>
+              <path id="edge-embed-chroma" class="edge" d="M288 65 H316"></path>
+              <g id="chroma"><title>Model-bound Chroma collection</title><rect class="node-muted" x="318" y="34" width="120" height="62" rx="13"></rect><text class="svg-label" x="378" y="61" text-anchor="middle">Chroma</text><text class="svg-sub" x="378" y="79" text-anchor="middle">vector store</text></g>
+              <path id="edge-chroma-rerank" class="edge" d="M438 65 H466"></path>
+              <g id="reranker"><title>Local RRF, BM25, and vector reranking retained</title><rect class="node" x="468" y="34" width="128" height="62" rx="13"></rect><text class="svg-label" x="532" y="59" text-anchor="middle">Local hybrid</text><text class="svg-sub" x="532" y="79" text-anchor="middle">RRF + BM25</text></g>
+              <path id="edge-rerank-gen" class="edge" d="M596 65 H624"></path>
+              <g id="generator"><title>Current Gemini generator retained</title><rect class="node" x="626" y="34" width="116" height="62" rx="13"></rect><text class="svg-label" x="684" y="61" text-anchor="middle">Gemini</text><text class="svg-sub" x="684" y="79" text-anchor="middle">generator</text></g>
+              <path id="edge-gen-validator" class="edge" d="M684 96 V142"></path>
+              <g id="validator"><title>Deterministic citation validation and safe refusal</title><rect class="node-muted" x="536" y="144" width="206" height="72" rx="13"></rect><text class="svg-label" x="639" y="174" text-anchor="middle">Citation validator</text><text class="svg-sub" x="639" y="194" text-anchor="middle">one repair + safe refusal</text></g>
+              <g id="chunk-decision"><title>Measured 500-character target, not yet promoted</title><rect class="node-muted" x="18" y="144" width="270" height="72" rx="13"></rect><text class="svg-label" x="153" y="174" text-anchor="middle">500-character target</text><text class="svg-sub" x="153" y="194" text-anchor="middle">controlled reindex still required</text></g>
+              <path id="edge-chunk-chroma" class="edge" d="M288 180 H378 V98"></path>
+            </svg>
+            <figcaption id="architecture-caption" class="mt-2 text-sm text-base-content/60">Measured target architecture. The runtime index remains at 800 characters until a synchronized reindex is possible.</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article class="card card-border bg-base-100">
+        <div class="card-body">
+          <p class="eyebrow">Why no NVIDIA replacement won</p>
+          <h2 class="card-title text-2xl">Speed did not outweigh quality</h2>
+          <div class="mt-3 space-y-3">
+            <div class="decision-rule rounded-r-box bg-base-200 p-4"><strong>Embeddings</strong><p class="mt-1 text-sm text-base-content/65">Matched Recall@5 fell from 1.000 to 0.963 and MRR fell from 0.944 to 0.833.</p></div>
+            <div class="decision-rule rounded-r-box bg-base-200 p-4"><strong>Reranking</strong><p class="mt-1 text-sm text-base-content/65">Rank 1 improved, but Recall@5 and Full@5 fell while adding a hosted dependency.</p></div>
+            <div class="decision-rule rounded-r-box bg-base-200 p-4"><strong>Generation</strong><p class="mt-1 text-sm text-base-content/65">Safe refusal worked, but 11 of 14 cases needed repair and supported correctness was 9.1%.</p></div>
+            <div class="decision-rule rounded-r-box bg-base-200 p-4"><strong>Planning</strong><p class="mt-1 text-sm text-base-content/65">Recall@5 was 0.948 with 6.28s p50 and 17.76s p95 planning latency.</p></div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="mt-6 card card-border bg-base-100">
+      <div class="card-body">
+        <p class="eyebrow">Controlled experiment</p>
+        <h2 class="card-title text-2xl">Chunking quality and cost</h2>
+        <p class="text-base-content/65">NVIDIA embeddings, the five-document corpus, four fixed queries, hybrid_v1, and a 120-character overlap were constant.</p>
+        <div class="mt-3 overflow-x-auto rounded-box border border-base-content/10">
+          <table class="table table-zebra">
+            <thead><tr><th>Characters</th><th>Chunks</th><th>Recall@1</th><th>Recall@3</th><th>Recall@5</th><th>MRR</th><th>Full@5</th><th>Retrieval p95</th><th>Decision</th></tr></thead>
+            <tbody>
+              <tr><td>300</td><td>66</td><td>0.837</td><td>0.956</td><td>0.980</td><td>0.960</td><td>0.952</td><td>4.05 ms</td><td><span class="badge badge-outline">Reject</span></td></tr>
+              <tr class="font-semibold"><td>500</td><td>31</td><td>0.853</td><td>0.984</td><td>1.000</td><td>0.964</td><td>1.000</td><td>3.69 ms</td><td><span class="badge badge-success">Winner</span></td></tr>
+              <tr><td>800</td><td>16</td><td>0.837</td><td>0.976</td><td>0.992</td><td>0.960</td><td>0.976</td><td>3.73 ms</td><td><span class="badge badge-warning">Current</span></td></tr>
+              <tr><td>1200</td><td>12</td><td>0.833</td><td>0.976</td><td>1.000</td><td>0.952</td><td>1.000</td><td>3.96 ms</td><td><span class="badge badge-outline">Runner-up</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-6 card card-border bg-base-100">
+      <div class="card-body">
+        <p class="eyebrow">Component matrix</p>
+        <h2 class="card-title text-2xl">Current versus NVIDIA</h2>
+        <div class="mt-3 overflow-x-auto rounded-box border border-base-content/10">
+          <table class="table table-zebra">
+            <thead><tr><th>Component</th><th>Gemini/current</th><th>NVIDIA</th><th>Winner</th><th>Trade-off</th></tr></thead>
+            <tbody>
+              <tr><th>Embeddings</th><td>R@5 1.000<br>MRR 0.944</td><td>R@5 0.963<br>MRR 0.833</td><td><span class="badge badge-success">Current</span></td><td>Faster NVIDIA calls did not clear quality.</td></tr>
+              <tr><th>Reranking</th><td>R@5 0.992<br>Full@5 0.976</td><td>R@5 0.984<br>Full@5 0.952<br>p95 230 ms</td><td><span class="badge badge-success">Local hybrid</span></td><td>Neural rank 1 improved, complete evidence fell.</td></tr>
+              <tr><th>Generation</th><td>Accepted quality baseline retained<br>Live run quota-limited</td><td>Correctness 9.1%<br>Repair 78.6%<br>p95 52.1s</td><td><span class="badge badge-success">Current</span></td><td>NVIDIA safe refusal was strong, answer utility was not.</td></tr>
+              <tr><th>Planning</th><td>Live run quota-limited</td><td>R@5 0.948<br>MRR 0.772<br>p95 17.76s</td><td><span class="badge badge-success">Current retained</span></td><td>Direct provider delta blocked; NVIDIA missed the reference gate.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-6 grid gap-6 lg:grid-cols-2">
+      <article class="card card-border bg-base-100"><div class="card-body"><p class="eyebrow">Historical regressions</p><h2 class="card-title text-2xl">The trade-off stayed visible</h2><ul class="mt-3 list-disc space-y-2 pl-5 text-base-content/70"><li>Financial approval moved from rank 4 to rank 3 under neural reranking.</li><li>Priority notification moved from rank 2 to rank 4 in the same compound case.</li><li>The dedicated notification case remained Recall@5 1.000 for both rerankers.</li><li>The expanded financial case did not reach Full@5 with NVIDIA embeddings under either reranker.</li></ul></div></article>
+      <article class="card card-border bg-base-100"><div class="card-body"><p class="eyebrow">Evidence limitations</p><h2 class="card-title text-2xl">What remains unclosed</h2><ul class="mt-3 list-disc space-y-2 pl-5 text-base-content/70"><li>Gemini quotas blocked expanded embeddings and most live generation and planning comparisons.</li><li>Generation used a 14-case stratified sample.</li><li>The corpus contains only five fictional documents.</li><li>Hosted trial behavior does not predict dedicated NIM performance or cost.</li><li>Citation entailment is a conservative lexical check.</li><li>The 500-character target still needs a synchronized production reindex.</li></ul></div></article>
+    </section>
+
+    <section class="mt-6 alert alert-warning alert-vertical sm:alert-horizontal" role="alert">
+      <div><strong>Project freeze</strong><p class="text-sm">Checkpoint 11 closes the experiment sequence. There is no Checkpoint 12, and no architecture or runtime index change is implied by this report.</p></div>
+    </section>
+
+    <footer class="py-8 text-center text-sm text-base-content/50">Atlas RAG - Checkpoint 11 - measured results, visible limitations, no fabricated deltas</footer>
+  </main>
+</body>
+</html>

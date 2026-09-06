@@ -1,0 +1,1678 @@
+[
+  {
+    "id": "direct_01",
+    "category": "direct",
+    "question": "What is the standard shipment delivery SLA?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "shipment_sla_policy.md",
+        "contains": "standard delivery SLA is 24 hours"
+      }
+    ],
+    "expected_facts": [
+      [
+        "24 hours"
+      ],
+      [
+        "dispatch confirmation"
+      ]
+    ],
+    "search_queries": [
+      "What is the standard shipment delivery SLA?",
+      "standard shipment SLA duration",
+      "24 hour delivery service level",
+      "when standard SLA clock starts"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "direct_02",
+    "category": "direct",
+    "question": "What is the priority customer delivery SLA?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "shipment_sla_policy.md",
+        "contains": "priority customer delivery SLA is 18 hours"
+      }
+    ],
+    "expected_facts": [
+      [
+        "18 hours"
+      ],
+      [
+        "dispatch confirmation"
+      ]
+    ],
+    "search_queries": [
+      "What is the priority customer delivery SLA?",
+      "priority shipment SLA duration",
+      "18 hour priority service level",
+      "priority SLA dispatch confirmation"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "direct_03",
+    "category": "direct",
+    "question": "When is a shipment considered at risk?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "shipment_sla_policy.md",
+        "contains": "predicted arrival is more than 2 hours later"
+      }
+    ],
+    "expected_facts": [
+      [
+        "more than 2 hours",
+        "exceeds 2 hours"
+      ],
+      [
+        "planned arrival"
+      ]
+    ],
+    "search_queries": [
+      "When is a shipment considered at risk?",
+      "at risk delay classification threshold",
+      "predicted arrival versus planned arrival",
+      "two hour shipment risk rule"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "direct_04",
+    "category": "direct",
+    "question": "How quickly must a dispatcher contact the carrier for an SLA-critical exception, and when must the carrier respond?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "delivery_exception_policy.md",
+        "contains": "contact the carrier within 15 minutes"
+      }
+    ],
+    "expected_facts": [
+      [
+        "15 minutes"
+      ],
+      [
+        "30 minutes"
+      ],
+      [
+        "revised arrival estimate"
+      ],
+      [
+        "corrective action"
+      ]
+    ],
+    "search_queries": [
+      "How quickly must a dispatcher contact the carrier for an SLA-critical exception, and when must the carrier respond?",
+      "SLA critical carrier contact deadline",
+      "carrier revised arrival estimate response time",
+      "carrier corrective action within 30 minutes"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "direct_05",
+    "category": "direct",
+    "question": "Which checks must a dispatcher complete before dispatch?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "dispatch_operations_sop.md",
+        "contains": "confirm the delivery address"
+      }
+    ],
+    "expected_facts": [
+      [
+        "delivery address"
+      ],
+      [
+        "shipment priority"
+      ],
+      [
+        "assigned carrier"
+      ],
+      [
+        "carrier has accepted the route"
+      ]
+    ],
+    "search_queries": [
+      "Which checks must a dispatcher complete before dispatch?",
+      "pre-dispatch checks address priority carrier",
+      "carrier route acceptance before dispatch",
+      "customs dangerous goods documents check"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "direct_06",
+    "category": "direct",
+    "question": "How often must a priority customer receive updates during an active SLA-critical incident?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "customer_escalation_policy.md",
+        "contains": "receive an update at least every hour"
+      }
+    ],
+    "expected_facts": [
+      [
+        "every hour",
+        "hourly"
+      ],
+      [
+        "priority"
+      ]
+    ],
+    "search_queries": [
+      "How often must a priority customer receive updates during an active SLA-critical incident?",
+      "priority customer incident communication frequency",
+      "hourly customer updates SLA critical",
+      "material change immediate customer communication"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "direct_07",
+    "category": "direct",
+    "question": "Who approves an unplanned operational cost of EUR 6,000?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "financial_approval_policy.md",
+        "contains": "above EUR 5,000"
+      }
+    ],
+    "expected_facts": [
+      [
+        "European Finance Director"
+      ],
+      [
+        "EUR 5,000",
+        "5,000"
+      ]
+    ],
+    "search_queries": [
+      "Who approves an unplanned operational cost of EUR 6,000?",
+      "EUR 6000 unplanned cost approver",
+      "cost above EUR 5000 approval",
+      "European Finance Director approval threshold"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "direct_08",
+    "category": "direct",
+    "question": "When is a root-cause review required and by when?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "delivery_exception_policy.md",
+        "contains": "SLA breach of more than 4 hours"
+      }
+    ],
+    "expected_facts": [
+      [
+        "more than 4 hours"
+      ],
+      [
+        "2 business days"
+      ]
+    ],
+    "search_queries": [
+      "When is a root-cause review required and by when?",
+      "root cause review SLA breach threshold",
+      "four hour breach investigation",
+      "root cause review within two business days"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "paraphrased_01",
+    "category": "paraphrased",
+    "question": "At what event does the delivery clock begin running?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "dispatch_operations_sop.md",
+        "contains": "timestamp starts the delivery SLA clock"
+      }
+    ],
+    "expected_facts": [
+      [
+        "dispatch confirmation"
+      ],
+      [
+        "left the origin facility"
+      ]
+    ],
+    "search_queries": [
+      "At what event does the delivery clock begin running?",
+      "event starting delivery SLA clock",
+      "dispatch confirmation timestamp SLA",
+      "shipment leaves origin facility confirmation"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "paraphrased_02",
+    "category": "paraphrased",
+    "question": "How long can live tracking be silent before dispatch investigates?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "dispatch_operations_sop.md",
+        "contains": "tracking data has not been received for 60 minutes"
+      }
+    ],
+    "expected_facts": [
+      [
+        "60 minutes"
+      ],
+      [
+        "investigate"
+      ]
+    ],
+    "search_queries": [
+      "How long can live tracking be silent before dispatch investigates?",
+      "missing tracking data investigation threshold",
+      "no tracking update for one hour",
+      "dispatcher monitoring silence"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "paraphrased_03",
+    "category": "paraphrased",
+    "question": "May one large commitment be divided to stay below an approval limit?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "financial_approval_policy.md",
+        "contains": "Splitting one financial commitment"
+      }
+    ],
+    "expected_facts": [
+      [
+        "prohibited",
+        "may not",
+        "must not"
+      ]
+    ],
+    "search_queries": [
+      "May one large commitment be divided to stay below an approval limit?",
+      "split financial commitment approval threshold",
+      "avoid approval limit rule",
+      "financial commitment anti splitting policy"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "paraphrased_04",
+    "category": "paraphrased",
+    "question": "How should the first customer message describe a cause that has not been verified?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "customer_escalation_policy.md",
+        "contains": "Unverified causes must be described as under investigation"
+      }
+    ],
+    "expected_facts": [
+      [
+        "under investigation"
+      ]
+    ],
+    "search_queries": [
+      "How should the first customer message describe a cause that has not been verified?",
+      "unverified incident cause customer wording",
+      "first customer update unknown cause",
+      "describe cause under investigation"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "paraphrased_05",
+    "category": "paraphrased",
+    "question": "What evidence allows a delivery exception to be closed?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "delivery_exception_policy.md",
+        "contains": "proof of delivery is recorded"
+      }
+    ],
+    "expected_facts": [
+      [
+        "proof of delivery"
+      ],
+      [
+        "formally cancelled",
+        "formal cancellation"
+      ]
+    ],
+    "search_queries": [
+      "What evidence allows a delivery exception to be closed?",
+      "conditions to close delivery exception",
+      "proof of delivery incident closure",
+      "formally cancelled shipment exception"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "paraphrased_06",
+    "category": "paraphrased",
+    "question": "When does a normal customer's delay require the customer owner to be alerted?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "customer_escalation_policy.md",
+        "contains": "standard customer shipment"
+      }
+    ],
+    "expected_facts": [
+      [
+        "Customer Success Manager"
+      ],
+      [
+        "exceed 2 hours",
+        "exceeds 2 hours"
+      ]
+    ],
+    "search_queries": [
+      "When does a normal customer's delay require the customer owner to be alerted?",
+      "standard customer CSM notification threshold",
+      "standard shipment SLA breach exceeds two hours",
+      "customer owner alert for normal shipment"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "paraphrased_07",
+    "category": "paraphrased",
+    "question": "How large a predicted-arrival change triggers a transport record refresh?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "shipment_sla_policy.md",
+        "contains": "changes by 30 minutes or more"
+      }
+    ],
+    "expected_facts": [
+      [
+        "30 minutes"
+      ],
+      [
+        "update"
+      ]
+    ],
+    "search_queries": [
+      "How large a predicted-arrival change triggers a transport record refresh?",
+      "predicted arrival record update threshold",
+      "thirty minute ETA change",
+      "transport management delay record refresh"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "cross_01",
+    "category": "cross_document",
+    "question": "A standard shipment is predicted 5 hours late. What escalation and transport-system records are required?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "shipment_sla_policy.md",
+        "contains": "standard shipment must be escalated"
+      },
+      {
+        "source": "shipment_sla_policy.md",
+        "contains": "dispatcher must record the delay reason"
+      }
+    ],
+    "expected_facts": [
+      [
+        "Regional Operations Manager"
+      ],
+      [
+        "delay reason"
+      ],
+      [
+        "corrective action"
+      ],
+      [
+        "next review time"
+      ]
+    ],
+    "search_queries": [
+      "A standard shipment is predicted 5 hours late. What escalation and transport-system records are required?",
+      "standard shipment five hour delay escalation",
+      "Regional Operations Manager four hour threshold",
+      "transport system delay records corrective action owner review"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "multi_01_financial_threshold_regression",
+    "category": "cross_document",
+    "question": "A priority customer shipment is expected to arrive 5 hours late and carries a EUR 1,500 contractual penalty. What actions are required?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "shipment_sla_policy.md",
+        "contains": "priority customer shipment must be escalated"
+      },
+      {
+        "source": "customer_escalation_policy.md",
+        "contains": "notify the Customer Success Manager within 30 minutes"
+      },
+      {
+        "source": "financial_approval_policy.md",
+        "contains": "penalties above EUR 1,000"
+      }
+    ],
+    "expected_facts": [
+      [
+        "Regional Operations Manager"
+      ],
+      [
+        "Customer Success Manager"
+      ],
+      [
+        "30 minutes"
+      ],
+      [
+        "before the SLA expires"
+      ],
+      [
+        "EUR 1,000",
+        "1,000"
+      ]
+    ],
+    "search_queries": [
+      "A priority customer shipment is expected to arrive 5 hours late and carries a EUR 1,500 contractual penalty. What actions are required?",
+      "priority shipment five hour delay escalation threshold",
+      "priority incident Customer Success Manager notification deadline",
+      "EUR 1500 contractual penalty approval threshold approver"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "cross_03",
+    "category": "cross_document",
+    "question": "A priority shipment has a vehicle breakdown, is predicted 3 hours late, and will miss its SLA. Who owns the escalated incident, what carrier response is required, and how often must it be reviewed?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "shipment_sla_policy.md",
+        "contains": "priority customer shipment must be escalated"
+      },
+      {
+        "source": "delivery_exception_policy.md",
+        "contains": "carrier must provide a revised arrival estimate"
+      },
+      {
+        "source": "delivery_exception_policy.md",
+        "contains": "priority customer shipments must be reviewed"
+      }
+    ],
+    "expected_facts": [
+      [
+        "Regional Operations Manager"
+      ],
+      [
+        "30 minutes"
+      ],
+      [
+        "revised arrival estimate"
+      ],
+      [
+        "corrective action"
+      ],
+      [
+        "every 30 minutes"
+      ]
+    ],
+    "search_queries": [
+      "A priority shipment has a vehicle breakdown, is predicted 3 hours late, and will miss its SLA. Who owns the escalated incident, what carrier response is required, and how often must it be reviewed?",
+      "priority shipment three hour delay escalation incident owner",
+      "vehicle breakdown carrier revised estimate corrective action deadline",
+      "SLA critical priority operational review frequency"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "cross_04",
+    "category": "cross_document",
+    "question": "An expedited transport option costs EUR 6,000 and Customer Success wants to offer compensation. What approvals and communication restrictions apply?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "financial_approval_policy.md",
+        "contains": "above EUR 5,000"
+      },
+      {
+        "source": "financial_approval_policy.md",
+        "contains": "may not make a binding offer"
+      },
+      {
+        "source": "customer_escalation_policy.md",
+        "contains": "must not be promised compensation"
+      }
+    ],
+    "expected_facts": [
+      [
+        "European Finance Director"
+      ],
+      [
+        "binding offer"
+      ],
+      [
+        "approval"
+      ]
+    ],
+    "search_queries": [
+      "An expedited transport option costs EUR 6,000 and Customer Success wants to offer compensation. What approvals and communication restrictions apply?",
+      "EUR 6000 expedited transport approval",
+      "Customer Success compensation binding offer restriction",
+      "customer compensation promise before financial approval"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "cross_05",
+    "category": "cross_document",
+    "question": "An at-risk shipment remains unresolved at shift change and later becomes SLA-critical. What handover and customer-notification records are required?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "dispatch_operations_sop.md",
+        "contains": "included in the written shift handover"
+      },
+      {
+        "source": "customer_escalation_policy.md",
+        "contains": "notifications must be recorded"
+      }
+    ],
+    "expected_facts": [
+      [
+        "written shift handover"
+      ],
+      [
+        "customer relationship management system",
+        "CRM"
+      ],
+      [
+        "timestamp"
+      ],
+      [
+        "next update"
+      ]
+    ],
+    "search_queries": [
+      "An at-risk shipment remains unresolved at shift change and later becomes SLA-critical. What handover and customer-notification records are required?",
+      "unresolved at risk shipment shift handover fields",
+      "customer notification CRM record fields",
+      "handover owner next review and promised next update"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "cross_06",
+    "category": "cross_document",
+    "question": "For an SLA-critical priority shipment, how often are operational reviews and customer updates required?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "delivery_exception_policy.md",
+        "contains": "priority customer shipments must be reviewed at least every 30 minutes"
+      },
+      {
+        "source": "customer_escalation_policy.md",
+        "contains": "receive an update at least every hour"
+      }
+    ],
+    "expected_facts": [
+      [
+        "30 minutes"
+      ],
+      [
+        "every hour",
+        "hourly"
+      ]
+    ],
+    "search_queries": [
+      "For an SLA-critical priority shipment, how often are operational reviews and customer updates required?",
+      "priority shipment operational review every 30 minutes",
+      "priority customer update every hour",
+      "difference operational review and external update frequency"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "cross_07",
+    "category": "cross_document",
+    "question": "A breach lasts 6 hours and creates a potential EUR 1,500 penalty. What review and approval are required?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "delivery_exception_policy.md",
+        "contains": "root-cause review within 2 business days"
+      },
+      {
+        "source": "financial_approval_policy.md",
+        "contains": "penalties above EUR 1,000"
+      }
+    ],
+    "expected_facts": [
+      [
+        "root-cause review"
+      ],
+      [
+        "2 business days"
+      ],
+      [
+        "Regional Operations Manager"
+      ]
+    ],
+    "search_queries": [
+      "A breach lasts 6 hours and creates a potential EUR 1,500 penalty. What review and approval are required?",
+      "six hour SLA breach root cause review",
+      "root cause within two business days",
+      "EUR 1500 potential penalty approval Regional Operations Manager"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "ambiguous_01",
+    "category": "ambiguous",
+    "question": "What happens once the delay passes the normal escalation line?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "shipment_sla_policy.md",
+        "contains": "standard shipment must be escalated"
+      }
+    ],
+    "expected_facts": [
+      [
+        "Regional Operations Manager"
+      ],
+      [
+        "4 hours"
+      ]
+    ],
+    "search_queries": [
+      "What happens once the delay passes the normal escalation line?",
+      "standard shipment escalation threshold",
+      "normal shipment predicted delay over four hours",
+      "who receives standard shipment escalation"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "ambiguous_02",
+    "category": "ambiguous",
+    "question": "Who takes over after the escalation?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "delivery_exception_policy.md",
+        "contains": "Regional Operations Manager becomes the incident owner"
+      }
+    ],
+    "expected_facts": [
+      [
+        "Regional Operations Manager"
+      ],
+      [
+        "incident owner"
+      ]
+    ],
+    "search_queries": [
+      "Who takes over after the escalation?",
+      "incident ownership after shipment escalation",
+      "Regional Operations Manager becomes owner",
+      "delivery exception formal transfer ownership"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "ambiguous_03",
+    "category": "ambiguous",
+    "question": "What must go into the first message?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "customer_escalation_policy.md",
+        "contains": "first customer update must state"
+      }
+    ],
+    "expected_facts": [
+      [
+        "shipment status"
+      ],
+      [
+        "known cause"
+      ],
+      [
+        "revised arrival estimate"
+      ],
+      [
+        "corrective action"
+      ],
+      [
+        "next update"
+      ]
+    ],
+    "search_queries": [
+      "What must go into the first message?",
+      "first customer incident update required content",
+      "shipment status cause revised arrival corrective action",
+      "customer message next update time"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "ambiguous_04",
+    "category": "ambiguous",
+    "question": "When do we check it again for a VIP load?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "delivery_exception_policy.md",
+        "contains": "priority customer shipments must be reviewed at least every 30 minutes"
+      }
+    ],
+    "expected_facts": [
+      [
+        "30 minutes"
+      ]
+    ],
+    "search_queries": [
+      "When do we check it again for a VIP load?",
+      "priority customer shipment operational review frequency",
+      "SLA critical priority review interval",
+      "thirty minute incident review"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "ambiguous_05",
+    "category": "ambiguous",
+    "question": "Can urgency bypass the sign-off?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "financial_approval_policy.md",
+        "contains": "Urgency does not remove the approval requirement"
+      }
+    ],
+    "expected_facts": [
+      [
+        "does not",
+        "cannot",
+        "no"
+      ],
+      [
+        "approval"
+      ]
+    ],
+    "search_queries": [
+      "Can urgency bypass the sign-off?",
+      "urgent expedited transport approval requirement",
+      "urgency financial approval exception",
+      "does urgency remove cost approval"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "ambiguous_06",
+    "category": "ambiguous",
+    "question": "What if the ETA moves again?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "shipment_sla_policy.md",
+        "contains": "predicted arrival changes by 30 minutes or more"
+      }
+    ],
+    "expected_facts": [
+      [
+        "30 minutes"
+      ],
+      [
+        "update"
+      ]
+    ],
+    "search_queries": [
+      "What if the ETA moves again?",
+      "predicted arrival change record update",
+      "ETA changes thirty minutes transport system",
+      "delay record update rule"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "ambiguous_07",
+    "category": "ambiguous",
+    "question": "Who is allowed to speak to the customer?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "customer_escalation_policy.md",
+        "contains": "owns external communication"
+      }
+    ],
+    "expected_facts": [
+      [
+        "Customer Success Manager"
+      ],
+      [
+        "account plan"
+      ]
+    ],
+    "search_queries": [
+      "Who is allowed to speak to the customer?",
+      "owner of external customer communication",
+      "Customer Success Manager communication owner",
+      "customer account plan named owner"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "unsupported_01",
+    "category": "unsupported",
+    "question": "How many trucks does Atlas Logistics own in Germany?",
+    "history": [],
+    "expected_evidence": [],
+    "expected_facts": [],
+    "search_queries": [
+      "How many trucks does Atlas Logistics own in Germany?",
+      "Atlas Germany fleet count",
+      "number of owned trucks",
+      "German vehicle inventory"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "unsupported_02",
+    "category": "unsupported",
+    "question": "How many warehouse facilities does Atlas operate in Spain?",
+    "history": [],
+    "expected_evidence": [],
+    "expected_facts": [],
+    "search_queries": [
+      "How many warehouse facilities does Atlas operate in Spain?",
+      "Atlas Spain warehouse count",
+      "Spanish facility locations",
+      "number of warehouses Spain"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "unsupported_03",
+    "category": "unsupported",
+    "question": "What is the employee vacation allowance?",
+    "history": [],
+    "expected_evidence": [],
+    "expected_facts": [],
+    "search_queries": [
+      "What is the employee vacation allowance?",
+      "Atlas annual leave policy",
+      "employee holiday entitlement",
+      "vacation days"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "unsupported_04",
+    "category": "unsupported",
+    "question": "Which carrier handled the most shipments in France last quarter?",
+    "history": [],
+    "expected_evidence": [],
+    "expected_facts": [],
+    "search_queries": [
+      "Which carrier handled the most shipments in France last quarter?",
+      "France top carrier volume",
+      "quarterly carrier ranking",
+      "shipment count by carrier"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "unsupported_05",
+    "category": "unsupported",
+    "question": "What percentage of deliveries arrived on time last quarter?",
+    "history": [],
+    "expected_evidence": [],
+    "expected_facts": [],
+    "search_queries": [
+      "What percentage of deliveries arrived on time last quarter?",
+      "last quarter on time delivery KPI",
+      "historical SLA performance percentage",
+      "delivery performance statistics"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "unsupported_06",
+    "category": "unsupported",
+    "question": "What contractual penalty applies automatically to every missed SLA?",
+    "history": [],
+    "expected_evidence": [],
+    "expected_facts": [],
+    "search_queries": [
+      "What contractual penalty applies automatically to every missed SLA?",
+      "automatic penalty amount SLA breach",
+      "contractual penalty formula",
+      "missed delivery compensation amount"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "unsupported_07",
+    "category": "unsupported",
+    "question": "What is the maximum weight for dangerous-goods shipments?",
+    "history": [],
+    "expected_evidence": [],
+    "expected_facts": [],
+    "search_queries": [
+      "What is the maximum weight for dangerous-goods shipments?",
+      "dangerous goods maximum shipment weight",
+      "hazardous cargo weight limit",
+      "dangerous goods transport restriction"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "unsupported_08",
+    "category": "unsupported",
+    "question": "Which form number is used for the root-cause review?",
+    "history": [],
+    "expected_evidence": [],
+    "expected_facts": [],
+    "search_queries": [
+      "Which form number is used for the root-cause review?",
+      "root cause review form identifier",
+      "two business day review template",
+      "incident investigation form number"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "authorization_01",
+    "category": "authorization",
+    "question": "Under employee access, what is the standard delivery SLA?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "shipment_sla_policy.md",
+        "contains": "standard delivery SLA is 24 hours"
+      }
+    ],
+    "expected_facts": [
+      [
+        "24 hours"
+      ]
+    ],
+    "search_queries": [
+      "Under employee access, what is the standard delivery SLA?",
+      "standard delivery SLA employee policy",
+      "shipment SLA duration",
+      "dispatch confirmation 24 hours"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "authorization_02",
+    "category": "authorization",
+    "question": "Under employee access, who owns external customer communication?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "customer_escalation_policy.md",
+        "contains": "owns external communication"
+      }
+    ],
+    "expected_facts": [
+      [
+        "Customer Success Manager"
+      ]
+    ],
+    "search_queries": [
+      "Under employee access, who owns external customer communication?",
+      "customer communication owner policy",
+      "Customer Success Manager external communication",
+      "account plan named owner"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "authorization_03",
+    "category": "authorization",
+    "question": "Under employee access, what is the carrier response deadline?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "delivery_exception_policy.md",
+        "contains": "within 30 minutes of contact"
+      }
+    ],
+    "expected_facts": [
+      [
+        "30 minutes"
+      ]
+    ],
+    "search_queries": [
+      "Under employee access, what is the carrier response deadline?",
+      "carrier response deadline exception",
+      "revised arrival estimate corrective action",
+      "thirty minutes after contact"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "authorization_04",
+    "category": "authorization",
+    "question": "Under employee access, who approves a EUR 12,000 potential penalty?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "financial_approval_policy.md",
+        "contains": "above EUR 10,000"
+      }
+    ],
+    "expected_facts": [
+      [
+        "Regional Operations Manager"
+      ],
+      [
+        "European Finance Director"
+      ]
+    ],
+    "search_queries": [
+      "Under employee access, who approves a EUR 12,000 potential penalty?",
+      "EUR 12000 penalty approval",
+      "penalty above EUR 10000 approvers",
+      "Regional Operations Manager European Finance Director"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "authorization_05",
+    "category": "authorization",
+    "question": "Under employee access, what is required at shift handover?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "dispatch_operations_sop.md",
+        "contains": "included in the written shift handover"
+      }
+    ],
+    "expected_facts": [
+      [
+        "shipment"
+      ],
+      [
+        "current status"
+      ],
+      [
+        "next action"
+      ],
+      [
+        "owner"
+      ],
+      [
+        "next review time"
+      ]
+    ],
+    "search_queries": [
+      "Under employee access, what is required at shift handover?",
+      "written shift handover required fields",
+      "unresolved at risk shipment handover",
+      "status action owner next review"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "authorization_06",
+    "category": "authorization",
+    "question": "Under employee access, how is approved compensation recorded?",
+    "history": [],
+    "expected_evidence": [
+      {
+        "source": "financial_approval_policy.md",
+        "contains": "recorded in both the customer relationship management system"
+      }
+    ],
+    "expected_facts": [
+      [
+        "customer relationship management system",
+        "CRM"
+      ],
+      [
+        "incident record"
+      ]
+    ],
+    "search_queries": [
+      "Under employee access, how is approved compensation recorded?",
+      "approved compensation recording systems",
+      "CRM and incident record",
+      "financial approval compensation records"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "conversation_01",
+    "category": "conversational",
+    "question": "And when should they be escalated?",
+    "history": [
+      {
+        "role": "user",
+        "content": "What is the SLA for priority customer shipments?"
+      },
+      {
+        "role": "assistant",
+        "content": "The priority customer delivery SLA is 18 hours from dispatch confirmation."
+      }
+    ],
+    "expected_evidence": [
+      {
+        "source": "shipment_sla_policy.md",
+        "contains": "priority customer shipment must be escalated"
+      }
+    ],
+    "expected_facts": [
+      [
+        "2 hours"
+      ],
+      [
+        "Regional Operations Manager"
+      ]
+    ],
+    "search_queries": [
+      "When should priority customer shipments be escalated?",
+      "priority shipment escalation threshold",
+      "predicted delay exceeds two hours",
+      "Regional Operations Manager priority escalation"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "conversation_02",
+    "category": "conversational",
+    "question": "Who needs to be told, and by when?",
+    "history": [
+      {
+        "role": "user",
+        "content": "A priority customer shipment is now at risk of missing delivery."
+      },
+      {
+        "role": "assistant",
+        "content": "The incident should be managed under priority customer rules."
+      }
+    ],
+    "expected_evidence": [
+      {
+        "source": "customer_escalation_policy.md",
+        "contains": "notify the Customer Success Manager within 30 minutes"
+      }
+    ],
+    "expected_facts": [
+      [
+        "Customer Success Manager"
+      ],
+      [
+        "30 minutes"
+      ],
+      [
+        "before the SLA expires"
+      ]
+    ],
+    "search_queries": [
+      "Who must be notified when a priority customer shipment risks missing its SLA, and by when?",
+      "priority incident Customer Success Manager notification",
+      "notify within 30 minutes after risk",
+      "notification before SLA expiry"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "conversation_03",
+    "category": "conversational",
+    "question": "What are the two update frequencies?",
+    "history": [
+      {
+        "role": "user",
+        "content": "Consider an SLA-critical priority customer shipment."
+      },
+      {
+        "role": "assistant",
+        "content": "We need both operational reviews and customer communications."
+      }
+    ],
+    "expected_evidence": [
+      {
+        "source": "delivery_exception_policy.md",
+        "contains": "priority customer shipments must be reviewed at least every 30 minutes"
+      },
+      {
+        "source": "customer_escalation_policy.md",
+        "contains": "receive an update at least every hour"
+      }
+    ],
+    "expected_facts": [
+      [
+        "30 minutes"
+      ],
+      [
+        "every hour",
+        "hourly"
+      ]
+    ],
+    "search_queries": [
+      "What are the operational review and customer update frequencies for an SLA-critical priority shipment?",
+      "priority operational review every 30 minutes",
+      "priority customer communication every hour",
+      "two update frequencies SLA critical priority"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "conversation_04",
+    "category": "conversational",
+    "question": "What does she need before offering it?",
+    "history": [
+      {
+        "role": "user",
+        "content": "The Customer Success Manager wants to offer the customer a credit."
+      },
+      {
+        "role": "assistant",
+        "content": "The Financial Approval Policy applies."
+      }
+    ],
+    "expected_evidence": [
+      {
+        "source": "financial_approval_policy.md",
+        "contains": "may not make a binding offer without approval"
+      }
+    ],
+    "expected_facts": [
+      [
+        "approval"
+      ],
+      [
+        "binding offer"
+      ]
+    ],
+    "search_queries": [
+      "What approval does the Customer Success Manager need before offering compensation?",
+      "Customer Success Manager binding compensation offer",
+      "financial approval before customer compensation",
+      "credit proposal approval requirement"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "conversation_05",
+    "category": "conversational",
+    "question": "Does that end their responsibility?",
+    "history": [
+      {
+        "role": "user",
+        "content": "The outgoing dispatcher added the at-risk shipment to the written handover."
+      },
+      {
+        "role": "assistant",
+        "content": "The incoming shift has not acknowledged it yet."
+      }
+    ],
+    "expected_evidence": [
+      {
+        "source": "dispatch_operations_sop.md",
+        "contains": "remains responsible until the incoming dispatcher acknowledges"
+      }
+    ],
+    "expected_facts": [
+      [
+        "incoming dispatcher acknowledges"
+      ],
+      [
+        "outgoing dispatcher"
+      ]
+    ],
+    "search_queries": [
+      "Does shift handover end the outgoing dispatcher's responsibility?",
+      "outgoing dispatcher responsibility handover",
+      "incoming dispatcher acknowledgement",
+      "when handover responsibility transfers"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "conversation_06",
+    "category": "conversational",
+    "question": "What should happen next if it changes materially?",
+    "history": [
+      {
+        "role": "user",
+        "content": "The priority customer is receiving hourly updates."
+      },
+      {
+        "role": "assistant",
+        "content": "A new route has materially changed the arrival estimate."
+      }
+    ],
+    "expected_evidence": [
+      {
+        "source": "customer_escalation_policy.md",
+        "contains": "must be communicated without waiting"
+      }
+    ],
+    "expected_facts": [
+      [
+        "without waiting"
+      ],
+      [
+        "communicated"
+      ]
+    ],
+    "search_queries": [
+      "What happens when the arrival estimate or corrective action changes materially during a customer incident?",
+      "material arrival estimate change customer communication",
+      "do not wait for scheduled update",
+      "corrective action change immediate update"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  },
+  {
+    "id": "conversation_07",
+    "category": "conversational",
+    "question": "Who approves the higher amount too?",
+    "history": [
+      {
+        "role": "user",
+        "content": "The Regional Operations Manager approves penalties above EUR 1,000."
+      },
+      {
+        "role": "assistant",
+        "content": "A larger threshold adds another approval."
+      }
+    ],
+    "expected_evidence": [
+      {
+        "source": "financial_approval_policy.md",
+        "contains": "above EUR 10,000 also require approval"
+      }
+    ],
+    "expected_facts": [
+      [
+        "European Finance Director"
+      ],
+      [
+        "Regional Operations Manager"
+      ]
+    ],
+    "search_queries": [
+      "Who approves a potential contractual penalty above EUR 10,000?",
+      "penalty above EUR 10000 additional approver",
+      "European Finance Director penalty approval",
+      "Regional Operations Manager high penalty"
+    ],
+    "authorization": {
+      "tenant_id": "atlas-logistics",
+      "access_scopes": [
+        "employees"
+      ]
+    }
+  }
+]
