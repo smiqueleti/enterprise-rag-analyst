@@ -1,0 +1,12 @@
+langchain
+langchain-google-genai
+langchain-chroma
+langchain-text-splitters
+chromadb
+pypdf
+streamlit
+python-dotenv
+rank-bm25
+fastapi
+uvicorn
+httpx

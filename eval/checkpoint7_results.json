@@ -1,0 +1,2625 @@
+{
+  "configuration": {
+    "cases": 19,
+    "supported_cases": 9,
+    "unsupported_cases": 10,
+    "embedding_model": "gemini-embedding-001",
+    "planner_model": "gemini-3.6-flash",
+    "generation_model": "gemini-3.5-flash",
+    "selected_retrieval": {
+      "per_query_k": 5,
+      "candidate_limit": 12,
+      "final_k": 5,
+      "method": "rrf"
+    },
+    "similarity_definition": "1 / (1 + Chroma L2 distance)",
+    "production_abstention_threshold_enabled": false,
+    "planner_origins": {
+      "gemini": 19
+    }
+  },
+  "baseline_retrieval": {
+    "recall_at_1": 0.5185185185185186,
+    "recall_at_3": 0.7407407407407408,
+    "recall_at_5": 0.925925925925926,
+    "recall_at_7": 0.925925925925926,
+    "full_evidence_at_3": 0.6666666666666666,
+    "full_evidence_at_5": 0.8888888888888888,
+    "full_evidence_at_7": 0.8888888888888888,
+    "mrr": 0.8277777777777778
+  },
+  "current_retrieval": {
+    "recall_at_1": 0.5,
+    "recall_at_3": 0.6666666666666666,
+    "recall_at_5": 1.0,
+    "recall_at_7": 1.0,
+    "full_evidence_at_3": 0.3333333333333333,
+    "full_evidence_at_5": 1.0,
+    "full_evidence_at_7": 1.0,
+    "mrr": 0.8425925925925926
+  },
+  "controlled_experiments": [
+    {
+      "key": "q5_p12_e5_rrf",
+      "per_query_k": 5,
+      "candidate_limit": 12,
+      "final_k": 5,
+      "reranker": "rrf",
+      "recall_at_1": 0.5,
+      "recall_at_3": 0.6666666666666666,
+      "recall_at_5": 1.0,
+      "recall_at_7": 1.0,
+      "full_evidence_at_3": 0.3333333333333333,
+      "full_evidence_at_5": 1.0,
+      "full_evidence_at_7": 1.0,
+      "mrr": 0.8425925925925926,
+      "mean_local_fusion_ms": 0.02442145745994316,
+      "mean_local_rerank_ms": 1.1596433210393622,
+      "financial_rank": 4,
+      "notification_rank": 3,
+      "notification_candidate_rank": 3
+    },
+    {
+      "key": "q5_p12_e5_bm25",
+      "per_query_k": 5,
+      "candidate_limit": 12,
+      "final_k": 5,
+      "reranker": "bm25",
+      "recall_at_1": 0.5185185185185186,
+      "recall_at_3": 0.7777777777777778,
+      "recall_at_5": 0.8888888888888888,
+      "recall_at_7": 0.8888888888888888,
+      "full_evidence_at_3": 0.6666666666666666,
+      "full_evidence_at_5": 0.7777777777777778,
+      "full_evidence_at_7": 0.7777777777777778,
+      "mrr": 0.8611111111111112,
+      "mean_local_fusion_ms": 0.10263421184693773,
+      "mean_local_rerank_ms": 1.4924304689177208,
+      "financial_rank": 4,
+      "notification_rank": null,
+      "notification_candidate_rank": 3
+    },
+    {
+      "key": "q5_p12_e5_hybrid",
+      "per_query_k": 5,
+      "candidate_limit": 12,
+      "final_k": 5,
+      "reranker": "hybrid",
+      "recall_at_1": 0.6296296296296297,
+      "recall_at_3": 0.7962962962962963,
+      "recall_at_5": 1.0,
+      "recall_at_7": 1.0,
+      "full_evidence_at_3": 0.5555555555555556,
+      "full_evidence_at_5": 1.0,
+      "full_evidence_at_7": 1.0,
+      "mrr": 0.9444444444444444,
+      "mean_local_fusion_ms": 0.016749998192406364,
+      "mean_local_rerank_ms": 0.806370549576564,
+      "financial_rank": 4,
+      "notification_rank": 2,
+      "notification_candidate_rank": 3
+    },
+    {
+      "key": "q5_p12_e7_rrf",
+      "per_query_k": 5,
+      "candidate_limit": 12,
+      "final_k": 7,
+      "reranker": "rrf",
+      "recall_at_1": 0.5,
+      "recall_at_3": 0.6666666666666666,
+      "recall_at_5": 1.0,
+      "recall_at_7": 1.0,
+      "full_evidence_at_3": 0.3333333333333333,
+      "full_evidence_at_5": 1.0,
+      "full_evidence_at_7": 1.0,
+      "mrr": 0.8425925925925926,
+      "mean_local_fusion_ms": 0.015430553402337763,
+      "mean_local_rerank_ms": 0.7419305556039844,
+      "financial_rank": 4,
+      "notification_rank": 3,
+      "notification_candidate_rank": 3
+    },
+    {
+      "key": "q5_p12_e7_bm25",
+      "per_query_k": 5,
+      "candidate_limit": 12,
+      "final_k": 7,
+      "reranker": "bm25",
+      "recall_at_1": 0.5185185185185186,
+      "recall_at_3": 0.7777777777777778,
+      "recall_at_5": 0.8888888888888888,
+      "recall_at_7": 0.9629629629629629,
+      "full_evidence_at_3": 0.6666666666666666,
+      "full_evidence_at_5": 0.7777777777777778,
+      "full_evidence_at_7": 0.8888888888888888,
+      "mrr": 0.8611111111111112,
+      "mean_local_fusion_ms": 0.015032328923957216,
+      "mean_local_rerank_ms": 0.7684812298975885,
+      "financial_rank": 4,
+      "notification_rank": 7,
+      "notification_candidate_rank": 3
+    },
+    {
+      "key": "q5_p12_e7_hybrid",
+      "per_query_k": 5,
+      "candidate_limit": 12,
+      "final_k": 7,
+      "reranker": "hybrid",
+      "recall_at_1": 0.6296296296296297,
+      "recall_at_3": 0.7962962962962963,
+      "recall_at_5": 1.0,
+      "recall_at_7": 1.0,
+      "full_evidence_at_3": 0.5555555555555556,
+      "full_evidence_at_5": 1.0,
+      "full_evidence_at_7": 1.0,
+      "mrr": 0.9444444444444444,
+      "mean_local_fusion_ms": 0.01581034545476238,
+      "mean_local_rerank_ms": 0.7718148925859067,
+      "financial_rank": 4,
+      "notification_rank": 2,
+      "notification_candidate_rank": 3
+    },
+    {
+      "key": "q5_p20_e5_rrf",
+      "per_query_k": 5,
+      "candidate_limit": 20,
+      "final_k": 5,
+      "reranker": "rrf",
+      "recall_at_1": 0.5,
+      "recall_at_3": 0.6666666666666666,
+      "recall_at_5": 1.0,
+      "recall_at_7": 1.0,
+      "full_evidence_at_3": 0.3333333333333333,
+      "full_evidence_at_5": 1.0,
+      "full_evidence_at_7": 1.0,
+      "mrr": 0.8425925925925926,
+      "mean_local_fusion_ms": 0.016301003698673513,
+      "mean_local_rerank_ms": 0.7764304431879686,
+      "financial_rank": 4,
+      "notification_rank": 3,
+      "notification_candidate_rank": 3
+    },
+    {
+      "key": "q5_p20_e5_bm25",
+      "per_query_k": 5,
+      "candidate_limit": 20,
+      "final_k": 5,
+      "reranker": "bm25",
+      "recall_at_1": 0.5185185185185186,
+      "recall_at_3": 0.7777777777777778,
+      "recall_at_5": 0.8888888888888888,
+      "recall_at_7": 0.8888888888888888,
+      "full_evidence_at_3": 0.6666666666666666,
+      "full_evidence_at_5": 0.7777777777777778,
+      "full_evidence_at_7": 0.7777777777777778,
+      "mrr": 0.8611111111111112,
+      "mean_local_fusion_ms": 0.018203773328827486,
+      "mean_local_rerank_ms": 0.7519953263302644,
+      "financial_rank": 4,
+      "notification_rank": null,
+      "notification_candidate_rank": 3
+    },
+    {
+      "key": "q5_p20_e5_hybrid",
+      "per_query_k": 5,
+      "candidate_limit": 20,
+      "final_k": 5,
+      "reranker": "hybrid",
+      "recall_at_1": 0.6296296296296297,
+      "recall_at_3": 0.7962962962962963,
+      "recall_at_5": 1.0,
+      "recall_at_7": 1.0,
+      "full_evidence_at_3": 0.5555555555555556,
+      "full_evidence_at_5": 1.0,
+      "full_evidence_at_7": 1.0,
+      "mrr": 0.9444444444444444,
+      "mean_local_fusion_ms": 0.016648218863540225,
+      "mean_local_rerank_ms": 0.7792222313582897,
+      "financial_rank": 4,
+      "notification_rank": 2,
+      "notification_candidate_rank": 3
+    },
+    {
+      "key": "q5_p20_e7_rrf",
+      "per_query_k": 5,
+      "candidate_limit": 20,
+      "final_k": 7,
+      "reranker": "rrf",
+      "recall_at_1": 0.5,
+      "recall_at_3": 0.6666666666666666,
+      "recall_at_5": 1.0,
+      "recall_at_7": 1.0,
+      "full_evidence_at_3": 0.3333333333333333,
+      "full_evidence_at_5": 1.0,
+      "full_evidence_at_7": 1.0,
+      "mrr": 0.8425925925925926,
+      "mean_local_fusion_ms": 0.01721756739748849,
+      "mean_local_rerank_ms": 0.7999117757814626,
+      "financial_rank": 4,
+      "notification_rank": 3,
+      "notification_candidate_rank": 3
+    },
+    {
+      "key": "q5_p20_e7_bm25",
+      "per_query_k": 5,
+      "candidate_limit": 20,
+      "final_k": 7,
+      "reranker": "bm25",
+      "recall_at_1": 0.5185185185185186,
+      "recall_at_3": 0.7777777777777778,
+      "recall_at_5": 0.8888888888888888,
+      "recall_at_7": 0.9629629629629629,
+      "full_evidence_at_3": 0.6666666666666666,
+      "full_evidence_at_5": 0.7777777777777778,
+      "full_evidence_at_7": 0.8888888888888888,
+      "mrr": 0.8611111111111112,
+      "mean_local_fusion_ms": 0.017032673996355798,
+      "mean_local_rerank_ms": 0.7807035581208766,
+      "financial_rank": 4,
+      "notification_rank": 7,
+      "notification_candidate_rank": 3
+    },
+    {
+      "key": "q5_p20_e7_hybrid",
+      "per_query_k": 5,
+      "candidate_limit": 20,
+      "final_k": 7,
+      "reranker": "hybrid",
+      "recall_at_1": 0.6296296296296297,
+      "recall_at_3": 0.7962962962962963,
+      "recall_at_5": 1.0,
+      "recall_at_7": 1.0,
+      "full_evidence_at_3": 0.5555555555555556,
+      "full_evidence_at_5": 1.0,
+      "full_evidence_at_7": 1.0,
+      "mrr": 0.9444444444444444,
+      "mean_local_fusion_ms": 0.018134118161267705,
+      "mean_local_rerank_ms": 0.8305968820220895,
+      "financial_rank": 4,
+      "notification_rank": 2,
+      "notification_candidate_rank": 3
+    },
+    {
+      "key": "q8_p12_e5_rrf",
+      "per_query_k": 8,
+      "candidate_limit": 12,
+      "final_k": 5,
+      "reranker": "rrf",
+      "recall_at_1": 0.5,
+      "recall_at_3": 0.6666666666666666,
+      "recall_at_5": 0.7592592592592592,
+      "recall_at_7": 0.7592592592592592,
+      "full_evidence_at_3": 0.4444444444444444,
+      "full_evidence_at_5": 0.5555555555555556,
+      "full_evidence_at_7": 0.5555555555555556,
+      "mrr": 0.8333333333333334,
+      "mean_local_fusion_ms": 0.022263783547613356,
+      "mean_local_rerank_ms": 0.8407588918796844,
+      "financial_rank": null,
+      "notification_rank": 2,
+      "notification_candidate_rank": 2
+    },
+    {
+      "key": "q8_p12_e5_bm25",
+      "per_query_k": 8,
+      "candidate_limit": 12,
+      "final_k": 5,
+      "reranker": "bm25",
+      "recall_at_1": 0.5185185185185186,
+      "recall_at_3": 0.7777777777777778,
+      "recall_at_5": 0.8888888888888888,
+      "recall_at_7": 0.8888888888888888,
+      "full_evidence_at_3": 0.6666666666666666,
+      "full_evidence_at_5": 0.7777777777777778,
+      "full_evidence_at_7": 0.7777777777777778,
+      "mrr": 0.8611111111111112,
+      "mean_local_fusion_ms": 0.020949338148865435,
+      "mean_local_rerank_ms": 1.08828710573208,
+      "financial_rank": 4,
+      "notification_rank": null,
+      "notification_candidate_rank": 2
+    },
+    {
+      "key": "q8_p12_e5_hybrid",
+      "per_query_k": 8,
+      "candidate_limit": 12,
+      "final_k": 5,
+      "reranker": "hybrid",
+      "recall_at_1": 0.5740740740740741,
+      "recall_at_3": 0.8518518518518519,
+      "recall_at_5": 0.925925925925926,
+      "recall_at_7": 0.925925925925926,
+      "full_evidence_at_3": 0.6666666666666666,
+      "full_evidence_at_5": 0.7777777777777778,
+      "full_evidence_at_7": 0.7777777777777778,
+      "mrr": 0.8703703703703703,
+      "mean_local_fusion_ms": 0.041819669099317655,
+      "mean_local_rerank_ms": 1.2851112211743991,
+      "financial_rank": null,
+      "notification_rank": 3,
+      "notification_candidate_rank": 2
+    },
+    {
+      "key": "q8_p12_e7_rrf",
+      "per_query_k": 8,
+      "candidate_limit": 12,
+      "final_k": 7,
+      "reranker": "rrf",
+      "recall_at_1": 0.5,
+      "recall_at_3": 0.6666666666666666,
+      "recall_at_5": 0.7592592592592592,
+      "recall_at_7": 0.9074074074074073,
+      "full_evidence_at_3": 0.4444444444444444,
+      "full_evidence_at_5": 0.5555555555555556,
+      "full_evidence_at_7": 0.7777777777777778,
+      "mrr": 0.8518518518518519,
+      "mean_local_fusion_ms": 0.020300781923449703,
+      "mean_local_rerank_ms": 0.8207082153401442,
+      "financial_rank": null,
+      "notification_rank": 2,
+      "notification_candidate_rank": 2
+    },
+    {
+      "key": "q8_p12_e7_bm25",
+      "per_query_k": 8,
+      "candidate_limit": 12,
+      "final_k": 7,
+      "reranker": "bm25",
+      "recall_at_1": 0.5185185185185186,
+      "recall_at_3": 0.7777777777777778,
+      "recall_at_5": 0.8888888888888888,
+      "recall_at_7": 0.9629629629629629,
+      "full_evidence_at_3": 0.6666666666666666,
+      "full_evidence_at_5": 0.7777777777777778,
+      "full_evidence_at_7": 0.8888888888888888,
+      "mrr": 0.8611111111111112,
+      "mean_local_fusion_ms": 0.019958333319260016,
+      "mean_local_rerank_ms": 0.8233425582552122,
+      "financial_rank": 4,
+      "notification_rank": 6,
+      "notification_candidate_rank": 2
+    },
+    {
+      "key": "q8_p12_e7_hybrid",
+      "per_query_k": 8,
+      "candidate_limit": 12,
+      "final_k": 7,
+      "reranker": "hybrid",
+      "recall_at_1": 0.5740740740740741,
+      "recall_at_3": 0.8518518518518519,
+      "recall_at_5": 0.925925925925926,
+      "recall_at_7": 1.0,
+      "full_evidence_at_3": 0.6666666666666666,
+      "full_evidence_at_5": 0.7777777777777778,
+      "full_evidence_at_7": 1.0,
+      "mrr": 0.8703703703703703,
+      "mean_local_fusion_ms": 0.021291657402697537,
+      "mean_local_rerank_ms": 0.856944443916695,
+      "financial_rank": 6,
+      "notification_rank": 3,
+      "notification_candidate_rank": 2
+    },
+    {
+      "key": "q8_p20_e5_rrf",
+      "per_query_k": 8,
+      "candidate_limit": 20,
+      "final_k": 5,
+      "reranker": "rrf",
+      "recall_at_1": 0.5,
+      "recall_at_3": 0.6666666666666666,
+      "recall_at_5": 0.7592592592592592,
+      "recall_at_7": 0.7592592592592592,
+      "full_evidence_at_3": 0.4444444444444444,
+      "full_evidence_at_5": 0.5555555555555556,
+      "full_evidence_at_7": 0.5555555555555556,
+      "mrr": 0.8333333333333334,
+      "mean_local_fusion_ms": 0.02140755532309413,
+      "mean_local_rerank_ms": 0.8642730988665588,
+      "financial_rank": null,
+      "notification_rank": 2,
+      "notification_candidate_rank": 2
+    },
+    {
+      "key": "q8_p20_e5_bm25",
+      "per_query_k": 8,
+      "candidate_limit": 20,
+      "final_k": 5,
+      "reranker": "bm25",
+      "recall_at_1": 0.5185185185185186,
+      "recall_at_3": 0.7777777777777778,
+      "recall_at_5": 0.8888888888888888,
+      "recall_at_7": 0.8888888888888888,
+      "full_evidence_at_3": 0.6666666666666666,
+      "full_evidence_at_5": 0.7777777777777778,
+      "full_evidence_at_7": 0.7777777777777778,
+      "mrr": 0.8611111111111112,
+      "mean_local_fusion_ms": 0.020486115115798183,
+      "mean_local_rerank_ms": 0.8594999930614399,
+      "financial_rank": 4,
+      "notification_rank": null,
+      "notification_candidate_rank": 2
+    },
+    {
+      "key": "q8_p20_e5_hybrid",
+      "per_query_k": 8,
+      "candidate_limit": 20,
+      "final_k": 5,
+      "reranker": "hybrid",
+      "recall_at_1": 0.5740740740740741,
+      "recall_at_3": 0.8518518518518519,
+      "recall_at_5": 0.925925925925926,
+      "recall_at_7": 0.925925925925926,
+      "full_evidence_at_3": 0.6666666666666666,
+      "full_evidence_at_5": 0.7777777777777778,
+      "full_evidence_at_7": 0.7777777777777778,
+      "mrr": 0.8888888888888888,
+      "mean_local_fusion_ms": 0.01990734340829982,
+      "mean_local_rerank_ms": 0.8332358880175484,
+      "financial_rank": null,
+      "notification_rank": 2,
+      "notification_candidate_rank": 2
+    },
+    {
+      "key": "q8_p20_e7_rrf",
+      "per_query_k": 8,
+      "candidate_limit": 20,
+      "final_k": 7,
+      "reranker": "rrf",
+      "recall_at_1": 0.5,
+      "recall_at_3": 0.6666666666666666,
+      "recall_at_5": 0.7592592592592592,
+      "recall_at_7": 0.9074074074074073,
+      "full_evidence_at_3": 0.4444444444444444,
+      "full_evidence_at_5": 0.5555555555555556,
+      "full_evidence_at_7": 0.7777777777777778,
+      "mrr": 0.8518518518518519,
+      "mean_local_fusion_ms": 0.02018066718139582,
+      "mean_local_rerank_ms": 0.8508935506041679,
+      "financial_rank": null,
+      "notification_rank": 2,
+      "notification_candidate_rank": 2
+    },
+    {
+      "key": "q8_p20_e7_bm25",
+      "per_query_k": 8,
+      "candidate_limit": 20,
+      "final_k": 7,
+      "reranker": "bm25",
+      "recall_at_1": 0.5185185185185186,
+      "recall_at_3": 0.7777777777777778,
+      "recall_at_5": 0.8888888888888888,
+      "recall_at_7": 0.9629629629629629,
+      "full_evidence_at_3": 0.6666666666666666,
+      "full_evidence_at_5": 0.7777777777777778,
+      "full_evidence_at_7": 0.8888888888888888,
+      "mrr": 0.8611111111111112,
+      "mean_local_fusion_ms": 0.020236339575300615,
+      "mean_local_rerank_ms": 0.8243008891844915,
+      "financial_rank": 4,
+      "notification_rank": 6,
+      "notification_candidate_rank": 2
+    },
+    {
+      "key": "q8_p20_e7_hybrid",
+      "per_query_k": 8,
+      "candidate_limit": 20,
+      "final_k": 7,
+      "reranker": "hybrid",
+      "recall_at_1": 0.5740740740740741,
+      "recall_at_3": 0.8518518518518519,
+      "recall_at_5": 0.925925925925926,
+      "recall_at_7": 1.0,
+      "full_evidence_at_3": 0.6666666666666666,
+      "full_evidence_at_5": 0.7777777777777778,
+      "full_evidence_at_7": 1.0,
+      "mrr": 0.8888888888888888,
+      "mean_local_fusion_ms": 0.020074004876530833,
+      "mean_local_rerank_ms": 0.8453102200292051,
+      "financial_rank": 6,
+      "notification_rank": 2,
+      "notification_candidate_rank": 2
+    },
+    {
+      "key": "q10_p12_e5_rrf",
+      "per_query_k": 10,
+      "candidate_limit": 12,
+      "final_k": 5,
+      "reranker": "rrf",
+      "recall_at_1": 0.5,
+      "recall_at_3": 0.7037037037037037,
+      "recall_at_5": 0.925925925925926,
+      "recall_at_7": 0.925925925925926,
+      "full_evidence_at_3": 0.4444444444444444,
+      "full_evidence_at_5": 0.7777777777777778,
+      "full_evidence_at_7": 0.7777777777777778,
+      "mrr": 0.8611111111111112,
+      "mean_local_fusion_ms": 0.024273338365472026,
+      "mean_local_rerank_ms": 0.8467592286049492,
+      "financial_rank": null,
+      "notification_rank": 2,
+      "notification_candidate_rank": 2
+    },
+    {
+      "key": "q10_p12_e5_bm25",
+      "per_query_k": 10,
+      "candidate_limit": 12,
+      "final_k": 5,
+      "reranker": "bm25",
+      "recall_at_1": 0.5185185185185186,
+      "recall_at_3": 0.8148148148148148,
+      "recall_at_5": 0.925925925925926,
+      "recall_at_7": 0.925925925925926,
+      "full_evidence_at_3": 0.6666666666666666,
+      "full_evidence_at_5": 0.7777777777777778,
+      "full_evidence_at_7": 0.7777777777777778,
+      "mrr": 0.8888888888888888,
+      "mean_local_fusion_ms": 0.024305436656706862,
+      "mean_local_rerank_ms": 0.8706478725394441,
+      "financial_rank": 2,
+      "notification_rank": 4,
+      "notification_candidate_rank": 2
+    },
+    {
+      "key": "q10_p12_e5_hybrid",
+      "per_query_k": 10,
+      "candidate_limit": 12,
+      "final_k": 5,
+      "reranker": "hybrid",
+      "recall_at_1": 0.6296296296296297,
+      "recall_at_3": 0.8518518518518519,
+      "recall_at_5": 0.8888888888888888,
+      "recall_at_7": 0.8888888888888888,
+      "full_evidence_at_3": 0.6666666666666666,
+      "full_evidence_at_5": 0.6666666666666666,
+      "full_evidence_at_7": 0.6666666666666666,
+      "mrr": 0.925925925925926,
+      "mean_local_fusion_ms": 0.023944432743721537,
+      "mean_local_rerank_ms": 0.8666527767976125,
+      "financial_rank": null,
+      "notification_rank": 3,
+      "notification_candidate_rank": 2
+    },
+    {
+      "key": "q10_p12_e7_rrf",
+      "per_query_k": 10,
+      "candidate_limit": 12,
+      "final_k": 7,
+      "reranker": "rrf",
+      "recall_at_1": 0.5,
+      "recall_at_3": 0.7037037037037037,
+      "recall_at_5": 0.925925925925926,
+      "recall_at_7": 0.925925925925926,
+      "full_evidence_at_3": 0.4444444444444444,
+      "full_evidence_at_5": 0.7777777777777778,
+      "full_evidence_at_7": 0.7777777777777778,
+      "mrr": 0.8611111111111112,
+      "mean_local_fusion_ms": 0.024166559645285208,
+      "mean_local_rerank_ms": 0.8890137800739871,
+      "financial_rank": null,
+      "notification_rank": 2,
+      "notification_candidate_rank": 2
+    },
+    {
+      "key": "q10_p12_e7_bm25",
+      "per_query_k": 10,
+      "candidate_limit": 12,
+      "final_k": 7,
+      "reranker": "bm25",
+      "recall_at_1": 0.5185185185185186,
+      "recall_at_3": 0.8148148148148148,
+      "recall_at_5": 0.925925925925926,
+      "recall_at_7": 0.925925925925926,
+      "full_evidence_at_3": 0.6666666666666666,
+      "full_evidence_at_5": 0.7777777777777778,
+      "full_evidence_at_7": 0.7777777777777778,
+      "mrr": 0.8888888888888888,
+      "mean_local_fusion_ms": 0.023800886184391048,
+      "mean_local_rerank_ms": 0.8608517819084227,
+      "financial_rank": 2,
+      "notification_rank": 4,
+      "notification_candidate_rank": 2
+    },
+    {
+      "key": "q10_p12_e7_hybrid",
+      "per_query_k": 10,
+      "candidate_limit": 12,
+      "final_k": 7,
+      "reranker": "hybrid",
+      "recall_at_1": 0.6296296296296297,
+      "recall_at_3": 0.8518518518518519,
+      "recall_at_5": 0.8888888888888888,
+      "recall_at_7": 0.9629629629629629,
+      "full_evidence_at_3": 0.6666666666666666,
+      "full_evidence_at_5": 0.6666666666666666,
+      "full_evidence_at_7": 0.8888888888888888,
+      "mrr": 0.925925925925926,
+      "mean_local_fusion_ms": 0.024685112293809652,
+      "mean_local_rerank_ms": 0.8826204446247883,
+      "financial_rank": 6,
+      "notification_rank": 3,
+      "notification_candidate_rank": 2
+    },
+    {
+      "key": "q10_p20_e5_rrf",
+      "per_query_k": 10,
+      "candidate_limit": 20,
+      "final_k": 5,
+      "reranker": "rrf",
+      "recall_at_1": 0.5,
+      "recall_at_3": 0.7037037037037037,
+      "recall_at_5": 0.925925925925926,
+      "recall_at_7": 0.925925925925926,
+      "full_evidence_at_3": 0.4444444444444444,
+      "full_evidence_at_5": 0.7777777777777778,
+      "full_evidence_at_7": 0.7777777777777778,
+      "mrr": 0.8611111111111112,
+      "mean_local_fusion_ms": 0.02495843606690566,
+      "mean_local_rerank_ms": 0.8912823331128392,
+      "financial_rank": null,
+      "notification_rank": 2,
+      "notification_candidate_rank": 2
+    },
+    {
+      "key": "q10_p20_e5_bm25",
+      "per_query_k": 10,
+      "candidate_limit": 20,
+      "final_k": 5,
+      "reranker": "bm25",
+      "recall_at_1": 0.462962962962963,
+      "recall_at_3": 0.7777777777777778,
+      "recall_at_5": 0.8888888888888888,
+      "recall_at_7": 0.8888888888888888,
+      "full_evidence_at_3": 0.6666666666666666,
+      "full_evidence_at_5": 0.7777777777777778,
+      "full_evidence_at_7": 0.7777777777777778,
+      "mrr": 0.8055555555555556,
+      "mean_local_fusion_ms": 0.02544910724585255,
+      "mean_local_rerank_ms": 0.9433566657308903,
+      "financial_rank": 4,
+      "notification_rank": null,
+      "notification_candidate_rank": 2
+    },
+    {
+      "key": "q10_p20_e5_hybrid",
+      "per_query_k": 10,
+      "candidate_limit": 20,
+      "final_k": 5,
+      "reranker": "hybrid",
+      "recall_at_1": 0.5740740740740741,
+      "recall_at_3": 0.8518518518518519,
+      "recall_at_5": 0.8888888888888888,
+      "recall_at_7": 0.8888888888888888,
+      "full_evidence_at_3": 0.6666666666666666,
+      "full_evidence_at_5": 0.6666666666666666,
+      "full_evidence_at_7": 0.6666666666666666,
+      "mrr": 0.8703703703703703,
+      "mean_local_fusion_ms": 0.024328674448447093,
+      "mean_local_rerank_ms": 0.8788424375880923,
+      "financial_rank": null,
+      "notification_rank": 3,
+      "notification_candidate_rank": 2
+    },
+    {
+      "key": "q10_p20_e7_rrf",
+      "per_query_k": 10,
+      "candidate_limit": 20,
+      "final_k": 7,
+      "reranker": "rrf",
+      "recall_at_1": 0.5,
+      "recall_at_3": 0.7037037037037037,
+      "recall_at_5": 0.925925925925926,
+      "recall_at_7": 0.925925925925926,
+      "full_evidence_at_3": 0.4444444444444444,
+      "full_evidence_at_5": 0.7777777777777778,
+      "full_evidence_at_7": 0.7777777777777778,
+      "mrr": 0.8611111111111112,
+      "mean_local_fusion_ms": 0.02329610288143158,
+      "mean_local_rerank_ms": 0.8745462206813196,
+      "financial_rank": null,
+      "notification_rank": 2,
+      "notification_candidate_rank": 2
+    },
+    {
+      "key": "q10_p20_e7_bm25",
+      "per_query_k": 10,
+      "candidate_limit": 20,
+      "final_k": 7,
+      "reranker": "bm25",
+      "recall_at_1": 0.462962962962963,
+      "recall_at_3": 0.7777777777777778,
+      "recall_at_5": 0.8888888888888888,
+      "recall_at_7": 0.925925925925926,
+      "full_evidence_at_3": 0.6666666666666666,
+      "full_evidence_at_5": 0.7777777777777778,
+      "full_evidence_at_7": 0.7777777777777778,
+      "mrr": 0.8055555555555556,
+      "mean_local_fusion_ms": 0.023759106018890936,
+      "mean_local_rerank_ms": 0.8993981108586822,
+      "financial_rank": 4,
+      "notification_rank": 6,
+      "notification_candidate_rank": 2
+    },
+    {
+      "key": "q10_p20_e7_hybrid",
+      "per_query_k": 10,
+      "candidate_limit": 20,
+      "final_k": 7,
+      "reranker": "hybrid",
+      "recall_at_1": 0.5740740740740741,
+      "recall_at_3": 0.8518518518518519,
+      "recall_at_5": 0.8888888888888888,
+      "recall_at_7": 1.0,
+      "full_evidence_at_3": 0.6666666666666666,
+      "full_evidence_at_5": 0.6666666666666666,
+      "full_evidence_at_7": 1.0,
+      "mrr": 0.8703703703703703,
+      "mean_local_fusion_ms": 0.023324120168884594,
+      "mean_local_rerank_ms": 0.9005511011410918,
+      "financial_rank": 6,
+      "notification_rank": 3,
+      "notification_candidate_rank": 2
+    }
+  ],
+  "answer_evaluated_experiment": {
+    "key": "q5_p12_e5_rrf",
+    "per_query_k": 5,
+    "candidate_limit": 12,
+    "final_k": 5,
+    "reranker": "rrf",
+    "recall_at_1": 0.5,
+    "recall_at_3": 0.6666666666666666,
+    "recall_at_5": 1.0,
+    "recall_at_7": 1.0,
+    "full_evidence_at_3": 0.3333333333333333,
+    "full_evidence_at_5": 1.0,
+    "full_evidence_at_7": 1.0,
+    "mrr": 0.8425925925925926,
+    "mean_local_fusion_ms": 0.02442145745994316,
+    "mean_local_rerank_ms": 1.1596433210393622,
+    "financial_rank": 4,
+    "notification_rank": 3,
+    "notification_candidate_rank": 3
+  },
+  "retrieval_quality_recommendation": {
+    "key": "q5_p12_e5_hybrid",
+    "per_query_k": 5,
+    "candidate_limit": 12,
+    "final_k": 5,
+    "reranker": "hybrid",
+    "recall_at_1": 0.6296296296296297,
+    "recall_at_3": 0.7962962962962963,
+    "recall_at_5": 1.0,
+    "recall_at_7": 1.0,
+    "full_evidence_at_3": 0.5555555555555556,
+    "full_evidence_at_5": 1.0,
+    "full_evidence_at_7": 1.0,
+    "mrr": 0.9444444444444444,
+    "mean_local_fusion_ms": 0.016749998192406364,
+    "mean_local_rerank_ms": 0.806370549576564,
+    "financial_rank": 4,
+    "notification_rank": 2,
+    "notification_candidate_rank": 3
+  },
+  "confidence_threshold_experiments": {
+    "top1_vector_similarity": {
+      "threshold": 0.6924983339927193,
+      "precision": 1.0,
+      "recall": 0.9,
+      "f1": 0.9473684210526316,
+      "false_answer_rate": 0.1,
+      "false_refusal_rate": 0.0
+    },
+    "top1_top2_margin": {
+      "threshold": 0.03611259589526061,
+      "precision": 0.5882352941176471,
+      "recall": 1.0,
+      "f1": 0.7407407407407407,
+      "false_answer_rate": 0.0,
+      "false_refusal_rate": 0.7777777777777778
+    },
+    "average_topk_similarity": {
+      "threshold": 0.6817516969015764,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "false_answer_rate": 0.0,
+      "false_refusal_rate": 0.0
+    },
+    "unique_source_documents": {
+      "threshold": 4.0,
+      "precision": 0.5555555555555556,
+      "recall": 0.5,
+      "f1": 0.5263157894736842,
+      "false_answer_rate": 0.5,
+      "false_refusal_rate": 0.4444444444444444
+    },
+    "top_reranker_score": {
+      "threshold": 21.950984337199127,
+      "precision": 1.0,
+      "recall": 0.8,
+      "f1": 0.888888888888889,
+      "false_answer_rate": 0.2,
+      "false_refusal_rate": 0.0
+    },
+    "hybrid_confidence": {
+      "threshold": 0.643837619623124,
+      "precision": 0.9090909090909091,
+      "recall": 1.0,
+      "f1": 0.9523809523809523,
+      "false_answer_rate": 0.0,
+      "false_refusal_rate": 0.1111111111111111
+    }
+  },
+  "answer_metrics": {
+    "refusal_precision": 1.0,
+    "refusal_recall": 1.0,
+    "false_answer_rate": 0.0,
+    "false_refusal_rate": 0.0,
+    "supported_answer_correctness": 1.0,
+    "supported_evidence_completeness": 1.0,
+    "citation_correctness": 1.0,
+    "citation_entailment": 1.0,
+    "answers_with_unsupported_claims": 0.1111111111111111
+  },
+  "latency_ms": {
+    "mean_planning": null,
+    "mean_baseline_vector": 306.46214026369546,
+    "mean_expanded_vector": 1266.5809868424396,
+    "mean_generation": 20855.05443422038
+  },
+  "regression": {
+    "id": "multi_01_financial_threshold_regression",
+    "category": "multi_policy",
+    "unsupported": false,
+    "original_query": "A priority customer shipment is expected to arrive 5 hours late and carries a EUR 1,500 contractual penalty. What actions are required?",
+    "history": [],
+    "rewritten_query": "Under Atlas Logistics policy, what operational escalation procedures, customer notification requirements, and financial approval workflows must be followed when a priority customer shipment is delayed by 5 hours and incurs a EUR 1,500 contractual penalty?",
+    "expanded_queries": [
+      "Under Atlas Logistics policy, what operational escalation procedures, customer notification requirements, and financial approval workflows must be followed when a priority customer shipment is delayed by 5 hours and incurs a EUR 1,500 contractual penalty?",
+      "Atlas Logistics operational escalation protocol and required actions for a 5 hour priority shipment delay",
+      "Atlas Logistics customer notification timeline and requirements for late priority shipments",
+      "Atlas Logistics financial approval threshold designated approver role for EUR 1,500 penalty"
+    ],
+    "planner_origin": "gemini",
+    "baseline_candidates": [
+      {
+        "rank": 1,
+        "chunk_id": "d28d54b66e96ced46dd216fc30d53985aafa8756cc75e2ff42238ad2aef10b4e",
+        "source": "financial_approval_policy.md",
+        "chunk_index": 2,
+        "distance_l2": 0.4204159379005432,
+        "vector_similarity_proxy": 0.7040191350415694,
+        "best_vector_rank": 1,
+        "rrf_score": 0.0,
+        "rrf_rank": null,
+        "bm25_score": 0.0,
+        "bm25_rank": null,
+        "hybrid_score": 0.0,
+        "final_rank": null,
+        "matched_queries": []
+      },
+      {
+        "rank": 2,
+        "chunk_id": "96e392368599d0b0d3844a08ee4c545d5265cf276ea2537836ebe6a3a09cd778",
+        "source": "dispatch_operations_sop.md",
+        "chunk_index": 2,
+        "distance_l2": 0.47083088755607605,
+        "vector_similarity_proxy": 0.6798878161048101,
+        "best_vector_rank": 2,
+        "rrf_score": 0.0,
+        "rrf_rank": null,
+        "bm25_score": 0.0,
+        "bm25_rank": null,
+        "hybrid_score": 0.0,
+        "final_rank": null,
+        "matched_queries": []
+      },
+      {
+        "rank": 3,
+        "chunk_id": "a6705203f8f6b8544f2b2a7b27e1e8a11f76171631e0457ee38536d682dec737",
+        "source": "delivery_exception_policy.md",
+        "chunk_index": 1,
+        "distance_l2": 0.47281748056411743,
+        "vector_similarity_proxy": 0.6789707572027056,
+        "best_vector_rank": 3,
+        "rrf_score": 0.0,
+        "rrf_rank": null,
+        "bm25_score": 0.0,
+        "bm25_rank": null,
+        "hybrid_score": 0.0,
+        "final_rank": null,
+        "matched_queries": []
+      },
+      {
+        "rank": 4,
+        "chunk_id": "16897761705bbe73a3be79161f3002399573d3f8dfa84fd76a3f021e3a3d269c",
+        "source": "shipment_sla_policy.md",
+        "chunk_index": 1,
+        "distance_l2": 0.47327515482902527,
+        "vector_similarity_proxy": 0.6787598343203247,
+        "best_vector_rank": 4,
+        "rrf_score": 0.0,
+        "rrf_rank": null,
+        "bm25_score": 0.0,
+        "bm25_rank": null,
+        "hybrid_score": 0.0,
+        "final_rank": null,
+        "matched_queries": []
+      },
+      {
+        "rank": 5,
+        "chunk_id": "cd53f666f5cecffffbc93a1b8d506977341b910e6968a57058d5a9b56e4da0bb",
+        "source": "customer_escalation_policy.md",
+        "chunk_index": 1,
+        "distance_l2": 0.5149545073509216,
+        "vector_similarity_proxy": 0.6600858277577055,
+        "best_vector_rank": 5,
+        "rrf_score": 0.0,
+        "rrf_rank": null,
+        "bm25_score": 0.0,
+        "bm25_rank": null,
+        "hybrid_score": 0.0,
+        "final_rank": null,
+        "matched_queries": []
+      },
+      {
+        "rank": 6,
+        "chunk_id": "90a59826dd51998f153bed8ce161dead66a5406bc8398ed2b7b5a103b475e0b1",
+        "source": "delivery_exception_policy.md",
+        "chunk_index": 2,
+        "distance_l2": 0.5255841016769409,
+        "vector_similarity_proxy": 0.6554866420676432,
+        "best_vector_rank": 6,
+        "rrf_score": 0.0,
+        "rrf_rank": null,
+        "bm25_score": 0.0,
+        "bm25_rank": null,
+        "hybrid_score": 0.0,
+        "final_rank": null,
+        "matched_queries": []
+      },
+      {
+        "rank": 7,
+        "chunk_id": "b5bdd0623912967187277d1aa225c8f434848697a3ab5bfa19827f24e52e3128",
+        "source": "shipment_sla_policy.md",
+        "chunk_index": 2,
+        "distance_l2": 0.5277820825576782,
+        "vector_similarity_proxy": 0.6545436102548657,
+        "best_vector_rank": 7,
+        "rrf_score": 0.0,
+        "rrf_rank": null,
+        "bm25_score": 0.0,
+        "bm25_rank": null,
+        "hybrid_score": 0.0,
+        "final_rank": null,
+        "matched_queries": []
+      },
+      {
+        "rank": 8,
+        "chunk_id": "7e898fbdb1c13b427f101d147861157df691c7058e853c23a033807214bd8bb2",
+        "source": "dispatch_operations_sop.md",
+        "chunk_index": 1,
+        "distance_l2": 0.5411552786827087,
+        "vector_similarity_proxy": 0.6488638840174124,
+        "best_vector_rank": 8,
+        "rrf_score": 0.0,
+        "rrf_rank": null,
+        "bm25_score": 0.0,
+        "bm25_rank": null,
+        "hybrid_score": 0.0,
+        "final_rank": null,
+        "matched_queries": []
+      },
+      {
+        "rank": 9,
+        "chunk_id": "487cac1e692155e7ab77e26ad4d925af60f736fe3bff7c6f3b79b3903dc2afdb",
+        "source": "financial_approval_policy.md",
+        "chunk_index": 1,
+        "distance_l2": 0.5461611151695251,
+        "vector_similarity_proxy": 0.6467631284921801,
+        "best_vector_rank": 9,
+        "rrf_score": 0.0,
+        "rrf_rank": null,
+        "bm25_score": 0.0,
+        "bm25_rank": null,
+        "hybrid_score": 0.0,
+        "final_rank": null,
+        "matched_queries": []
+      },
+      {
+        "rank": 10,
+        "chunk_id": "b9e7b0999178277e51f532c56ba73874ff1eda3196c310d4711fd9f2dd1ce5fd",
+        "source": "customer_escalation_policy.md",
+        "chunk_index": 2,
+        "distance_l2": 0.5794895887374878,
+        "vector_similarity_proxy": 0.63311591740172,
+        "best_vector_rank": 10,
+        "rrf_score": 0.0,
+        "rrf_rank": null,
+        "bm25_score": 0.0,
+        "bm25_rank": null,
+        "hybrid_score": 0.0,
+        "final_rank": null,
+        "matched_queries": []
+      }
+    ],
+    "retrieved_candidates_by_query": [
+      {
+        "query": "Under Atlas Logistics policy, what operational escalation procedures, customer notification requirements, and financial approval workflows must be followed when a priority customer shipment is delayed by 5 hours and incurs a EUR 1,500 contractual penalty?",
+        "latency_ms": 327.3346250061877,
+        "candidates": [
+          {
+            "rank": 1,
+            "chunk_id": "d28d54b66e96ced46dd216fc30d53985aafa8756cc75e2ff42238ad2aef10b4e",
+            "source": "financial_approval_policy.md",
+            "chunk_index": 2,
+            "distance_l2": 0.4196750521659851,
+            "vector_similarity_proxy": 0.7043865414654636,
+            "best_vector_rank": 1,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 2,
+            "chunk_id": "2ad69ccf8e8632bb4b655ca5b8be8cb6220e8ebfb34b5e1402905b3fb1c3ab07",
+            "source": "customer_escalation_policy.md",
+            "chunk_index": 0,
+            "distance_l2": 0.44265368580818176,
+            "vector_similarity_proxy": 0.693167050302717,
+            "best_vector_rank": 2,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 3,
+            "chunk_id": "16897761705bbe73a3be79161f3002399573d3f8dfa84fd76a3f021e3a3d269c",
+            "source": "shipment_sla_policy.md",
+            "chunk_index": 1,
+            "distance_l2": 0.4556756019592285,
+            "vector_similarity_proxy": 0.6869662434776513,
+            "best_vector_rank": 3,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 4,
+            "chunk_id": "487cac1e692155e7ab77e26ad4d925af60f736fe3bff7c6f3b79b3903dc2afdb",
+            "source": "financial_approval_policy.md",
+            "chunk_index": 1,
+            "distance_l2": 0.4789391756057739,
+            "vector_similarity_proxy": 0.6761603293052263,
+            "best_vector_rank": 4,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 5,
+            "chunk_id": "4d8369a9bfc285954138e395a9f016ebdb0f791b51adaf2551d247c6e1f34fa1",
+            "source": "delivery_exception_policy.md",
+            "chunk_index": 3,
+            "distance_l2": 0.4874708652496338,
+            "vector_similarity_proxy": 0.6722820751397881,
+            "best_vector_rank": 5,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 6,
+            "chunk_id": "a6705203f8f6b8544f2b2a7b27e1e8a11f76171631e0457ee38536d682dec737",
+            "source": "delivery_exception_policy.md",
+            "chunk_index": 1,
+            "distance_l2": 0.4899657666683197,
+            "vector_similarity_proxy": 0.6711563596766914,
+            "best_vector_rank": 6,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 7,
+            "chunk_id": "96e392368599d0b0d3844a08ee4c545d5265cf276ea2537836ebe6a3a09cd778",
+            "source": "dispatch_operations_sop.md",
+            "chunk_index": 2,
+            "distance_l2": 0.4954686164855957,
+            "vector_similarity_proxy": 0.6686867173114174,
+            "best_vector_rank": 7,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 8,
+            "chunk_id": "cd53f666f5cecffffbc93a1b8d506977341b910e6968a57058d5a9b56e4da0bb",
+            "source": "customer_escalation_policy.md",
+            "chunk_index": 1,
+            "distance_l2": 0.4962307810783386,
+            "vector_similarity_proxy": 0.6683460951654107,
+            "best_vector_rank": 8,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 9,
+            "chunk_id": "187ee5d0a8933625f1e51d5f2482e980e3327ba162c64d2ef7ab019c15d4b8bc",
+            "source": "shipment_sla_policy.md",
+            "chunk_index": 0,
+            "distance_l2": 0.51116943359375,
+            "vector_similarity_proxy": 0.6617391655559595,
+            "best_vector_rank": 9,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 10,
+            "chunk_id": "90a59826dd51998f153bed8ce161dead66a5406bc8398ed2b7b5a103b475e0b1",
+            "source": "delivery_exception_policy.md",
+            "chunk_index": 2,
+            "distance_l2": 0.5112488865852356,
+            "vector_similarity_proxy": 0.6617043750216184,
+            "best_vector_rank": 10,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          }
+        ]
+      },
+      {
+        "query": "Atlas Logistics operational escalation protocol and required actions for a 5 hour priority shipment delay",
+        "latency_ms": 280.1907079992816,
+        "candidates": [
+          {
+            "rank": 1,
+            "chunk_id": "16897761705bbe73a3be79161f3002399573d3f8dfa84fd76a3f021e3a3d269c",
+            "source": "shipment_sla_policy.md",
+            "chunk_index": 1,
+            "distance_l2": 0.41145989298820496,
+            "vector_similarity_proxy": 0.7084863019967912,
+            "best_vector_rank": 1,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 2,
+            "chunk_id": "a6705203f8f6b8544f2b2a7b27e1e8a11f76171631e0457ee38536d682dec737",
+            "source": "delivery_exception_policy.md",
+            "chunk_index": 1,
+            "distance_l2": 0.42432552576065063,
+            "vector_similarity_proxy": 0.7020866943081409,
+            "best_vector_rank": 2,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 3,
+            "chunk_id": "96e392368599d0b0d3844a08ee4c545d5265cf276ea2537836ebe6a3a09cd778",
+            "source": "dispatch_operations_sop.md",
+            "chunk_index": 2,
+            "distance_l2": 0.4481216073036194,
+            "vector_similarity_proxy": 0.6905497404061147,
+            "best_vector_rank": 3,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 4,
+            "chunk_id": "d28d54b66e96ced46dd216fc30d53985aafa8756cc75e2ff42238ad2aef10b4e",
+            "source": "financial_approval_policy.md",
+            "chunk_index": 2,
+            "distance_l2": 0.45233941078186035,
+            "vector_similarity_proxy": 0.6885442841915682,
+            "best_vector_rank": 4,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 5,
+            "chunk_id": "2ad69ccf8e8632bb4b655ca5b8be8cb6220e8ebfb34b5e1402905b3fb1c3ab07",
+            "source": "customer_escalation_policy.md",
+            "chunk_index": 0,
+            "distance_l2": 0.46412545442581177,
+            "vector_similarity_proxy": 0.6830015808940166,
+            "best_vector_rank": 5,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 6,
+            "chunk_id": "90a59826dd51998f153bed8ce161dead66a5406bc8398ed2b7b5a103b475e0b1",
+            "source": "delivery_exception_policy.md",
+            "chunk_index": 2,
+            "distance_l2": 0.47957679629325867,
+            "vector_similarity_proxy": 0.675868939351625,
+            "best_vector_rank": 6,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 7,
+            "chunk_id": "cd53f666f5cecffffbc93a1b8d506977341b910e6968a57058d5a9b56e4da0bb",
+            "source": "customer_escalation_policy.md",
+            "chunk_index": 1,
+            "distance_l2": 0.4857725501060486,
+            "vector_similarity_proxy": 0.6730505284463789,
+            "best_vector_rank": 7,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 8,
+            "chunk_id": "187ee5d0a8933625f1e51d5f2482e980e3327ba162c64d2ef7ab019c15d4b8bc",
+            "source": "shipment_sla_policy.md",
+            "chunk_index": 0,
+            "distance_l2": 0.5045803785324097,
+            "vector_similarity_proxy": 0.6646371402074345,
+            "best_vector_rank": 8,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 9,
+            "chunk_id": "7e898fbdb1c13b427f101d147861157df691c7058e853c23a033807214bd8bb2",
+            "source": "dispatch_operations_sop.md",
+            "chunk_index": 1,
+            "distance_l2": 0.5166518092155457,
+            "vector_similarity_proxy": 0.6593471183852196,
+            "best_vector_rank": 9,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 10,
+            "chunk_id": "b9e7b0999178277e51f532c56ba73874ff1eda3196c310d4711fd9f2dd1ce5fd",
+            "source": "customer_escalation_policy.md",
+            "chunk_index": 2,
+            "distance_l2": 0.5219276547431946,
+            "vector_similarity_proxy": 0.6570614555057395,
+            "best_vector_rank": 10,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          }
+        ]
+      },
+      {
+        "query": "Atlas Logistics customer notification timeline and requirements for late priority shipments",
+        "latency_ms": 263.82658298825845,
+        "candidates": [
+          {
+            "rank": 1,
+            "chunk_id": "cd53f666f5cecffffbc93a1b8d506977341b910e6968a57058d5a9b56e4da0bb",
+            "source": "customer_escalation_policy.md",
+            "chunk_index": 1,
+            "distance_l2": 0.45194727182388306,
+            "vector_similarity_proxy": 0.6887302448275802,
+            "best_vector_rank": 1,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 2,
+            "chunk_id": "b9e7b0999178277e51f532c56ba73874ff1eda3196c310d4711fd9f2dd1ce5fd",
+            "source": "customer_escalation_policy.md",
+            "chunk_index": 2,
+            "distance_l2": 0.4655565023422241,
+            "vector_similarity_proxy": 0.6823346615444845,
+            "best_vector_rank": 2,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 3,
+            "chunk_id": "a6705203f8f6b8544f2b2a7b27e1e8a11f76171631e0457ee38536d682dec737",
+            "source": "delivery_exception_policy.md",
+            "chunk_index": 1,
+            "distance_l2": 0.4818044602870941,
+            "vector_similarity_proxy": 0.6748528748565473,
+            "best_vector_rank": 3,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 4,
+            "chunk_id": "2ad69ccf8e8632bb4b655ca5b8be8cb6220e8ebfb34b5e1402905b3fb1c3ab07",
+            "source": "customer_escalation_policy.md",
+            "chunk_index": 0,
+            "distance_l2": 0.4918018579483032,
+            "vector_similarity_proxy": 0.6703303087283418,
+            "best_vector_rank": 4,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 5,
+            "chunk_id": "16897761705bbe73a3be79161f3002399573d3f8dfa84fd76a3f021e3a3d269c",
+            "source": "shipment_sla_policy.md",
+            "chunk_index": 1,
+            "distance_l2": 0.49666717648506165,
+            "vector_similarity_proxy": 0.6681512200651787,
+            "best_vector_rank": 5,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 6,
+            "chunk_id": "96e392368599d0b0d3844a08ee4c545d5265cf276ea2537836ebe6a3a09cd778",
+            "source": "dispatch_operations_sop.md",
+            "chunk_index": 2,
+            "distance_l2": 0.5043293833732605,
+            "vector_similarity_proxy": 0.6647480339429598,
+            "best_vector_rank": 6,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 7,
+            "chunk_id": "90a59826dd51998f153bed8ce161dead66a5406bc8398ed2b7b5a103b475e0b1",
+            "source": "delivery_exception_policy.md",
+            "chunk_index": 2,
+            "distance_l2": 0.5167481899261475,
+            "vector_similarity_proxy": 0.6593052206303878,
+            "best_vector_rank": 7,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 8,
+            "chunk_id": "187ee5d0a8933625f1e51d5f2482e980e3327ba162c64d2ef7ab019c15d4b8bc",
+            "source": "shipment_sla_policy.md",
+            "chunk_index": 0,
+            "distance_l2": 0.5254389047622681,
+            "vector_similarity_proxy": 0.6555490337096423,
+            "best_vector_rank": 8,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 9,
+            "chunk_id": "7e898fbdb1c13b427f101d147861157df691c7058e853c23a033807214bd8bb2",
+            "source": "dispatch_operations_sop.md",
+            "chunk_index": 1,
+            "distance_l2": 0.533626139163971,
+            "vector_similarity_proxy": 0.6520493974790572,
+            "best_vector_rank": 9,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 10,
+            "chunk_id": "d28d54b66e96ced46dd216fc30d53985aafa8756cc75e2ff42238ad2aef10b4e",
+            "source": "financial_approval_policy.md",
+            "chunk_index": 2,
+            "distance_l2": 0.5463453531265259,
+            "vector_similarity_proxy": 0.6466860704681003,
+            "best_vector_rank": 10,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          }
+        ]
+      },
+      {
+        "query": "Atlas Logistics financial approval threshold designated approver role for EUR 1,500 penalty",
+        "latency_ms": 285.50237498711795,
+        "candidates": [
+          {
+            "rank": 1,
+            "chunk_id": "487cac1e692155e7ab77e26ad4d925af60f736fe3bff7c6f3b79b3903dc2afdb",
+            "source": "financial_approval_policy.md",
+            "chunk_index": 1,
+            "distance_l2": 0.4464070200920105,
+            "vector_similarity_proxy": 0.6913683258647257,
+            "best_vector_rank": 1,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 2,
+            "chunk_id": "aefdc5d5e978d6a42e23851c9d0862f3c53e1a3368bcd2b7250c373bcb20f4fb",
+            "source": "financial_approval_policy.md",
+            "chunk_index": 0,
+            "distance_l2": 0.48867836594581604,
+            "vector_similarity_proxy": 0.6717367719417757,
+            "best_vector_rank": 2,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 3,
+            "chunk_id": "4d8369a9bfc285954138e395a9f016ebdb0f791b51adaf2551d247c6e1f34fa1",
+            "source": "delivery_exception_policy.md",
+            "chunk_index": 3,
+            "distance_l2": 0.6198989748954773,
+            "vector_similarity_proxy": 0.6173224475708581,
+            "best_vector_rank": 3,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 4,
+            "chunk_id": "d28d54b66e96ced46dd216fc30d53985aafa8756cc75e2ff42238ad2aef10b4e",
+            "source": "financial_approval_policy.md",
+            "chunk_index": 2,
+            "distance_l2": 0.6857817769050598,
+            "vector_similarity_proxy": 0.5931965890839727,
+            "best_vector_rank": 4,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 5,
+            "chunk_id": "187ee5d0a8933625f1e51d5f2482e980e3327ba162c64d2ef7ab019c15d4b8bc",
+            "source": "shipment_sla_policy.md",
+            "chunk_index": 0,
+            "distance_l2": 0.68858802318573,
+            "vector_similarity_proxy": 0.5922107620504002,
+            "best_vector_rank": 5,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 6,
+            "chunk_id": "2ad69ccf8e8632bb4b655ca5b8be8cb6220e8ebfb34b5e1402905b3fb1c3ab07",
+            "source": "customer_escalation_policy.md",
+            "chunk_index": 0,
+            "distance_l2": 0.6934630870819092,
+            "vector_similarity_proxy": 0.5905059328592452,
+            "best_vector_rank": 6,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 7,
+            "chunk_id": "16897761705bbe73a3be79161f3002399573d3f8dfa84fd76a3f021e3a3d269c",
+            "source": "shipment_sla_policy.md",
+            "chunk_index": 1,
+            "distance_l2": 0.6958698630332947,
+            "vector_similarity_proxy": 0.5896678877301137,
+            "best_vector_rank": 7,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 8,
+            "chunk_id": "c728eb09c4f2ab9186c162a8579ee27c03e29bcf5f1d50ef28d093fcef037ee1",
+            "source": "delivery_exception_policy.md",
+            "chunk_index": 0,
+            "distance_l2": 0.7160181999206543,
+            "vector_similarity_proxy": 0.582744402155081,
+            "best_vector_rank": 8,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 9,
+            "chunk_id": "90a59826dd51998f153bed8ce161dead66a5406bc8398ed2b7b5a103b475e0b1",
+            "source": "delivery_exception_policy.md",
+            "chunk_index": 2,
+            "distance_l2": 0.7250231504440308,
+            "vector_similarity_proxy": 0.5797023650045475,
+            "best_vector_rank": 9,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          },
+          {
+            "rank": 10,
+            "chunk_id": "96e392368599d0b0d3844a08ee4c545d5265cf276ea2537836ebe6a3a09cd778",
+            "source": "dispatch_operations_sop.md",
+            "chunk_index": 2,
+            "distance_l2": 0.7271225452423096,
+            "vector_similarity_proxy": 0.5789977108194736,
+            "best_vector_rank": 10,
+            "rrf_score": 0.0,
+            "rrf_rank": null,
+            "bm25_score": 0.0,
+            "bm25_rank": null,
+            "hybrid_score": 0.0,
+            "final_rank": null,
+            "matched_queries": []
+          }
+        ]
+      }
+    ],
+    "candidate_pool": [
+      {
+        "rank": 1,
+        "chunk_id": "16897761705bbe73a3be79161f3002399573d3f8dfa84fd76a3f021e3a3d269c",
+        "source": "shipment_sla_policy.md",
+        "chunk_index": 1,
+        "distance_l2": 0.41145989298820496,
+        "vector_similarity_proxy": 0.7084863019967912,
+        "best_vector_rank": 1,
+        "rrf_score": 0.04765107388058208,
+        "rrf_rank": 1,
+        "bm25_score": 0.0,
+        "bm25_rank": null,
+        "hybrid_score": 0.0,
+        "final_rank": null,
+        "matched_queries": [
+          "Under Atlas Logistics policy, what operational escalation procedures, customer notification requirements, and financial approval workflows must be followed when a priority customer shipment is delayed by 5 hours and incurs a EUR 1,500 contractual penalty?",
+          "Atlas Logistics operational escalation protocol and required actions for a 5 hour priority shipment delay",
+          "Atlas Logistics customer notification timeline and requirements for late priority shipments"
+        ]
+      },
+      {
+        "rank": 2,
+        "chunk_id": "d28d54b66e96ced46dd216fc30d53985aafa8756cc75e2ff42238ad2aef10b4e",
+        "source": "financial_approval_policy.md",
+        "chunk_index": 2,
+        "distance_l2": 0.4196750521659851,
+        "vector_similarity_proxy": 0.7043865414654636,
+        "best_vector_rank": 1,
+        "rrf_score": 0.047643442622950824,
+        "rrf_rank": 2,
+        "bm25_score": 0.0,
+        "bm25_rank": null,
+        "hybrid_score": 0.0,
+        "final_rank": null,
+        "matched_queries": [
+          "Under Atlas Logistics policy, what operational escalation procedures, customer notification requirements, and financial approval workflows must be followed when a priority customer shipment is delayed by 5 hours and incurs a EUR 1,500 contractual penalty?",
+          "Atlas Logistics operational escalation protocol and required actions for a 5 hour priority shipment delay",
+          "Atlas Logistics financial approval threshold designated approver role for EUR 1,500 penalty"
+        ]
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2ad69ccf8e8632bb4b655ca5b8be8cb6220e8ebfb34b5e1402905b3fb1c3ab07",
+        "source": "customer_escalation_policy.md",
+        "chunk_index": 0,
+        "distance_l2": 0.44265368580818176,
+        "vector_similarity_proxy": 0.693167050302717,
+        "best_vector_rank": 2,
+        "rrf_score": 0.0471386476426799,
+        "rrf_rank": 3,
+        "bm25_score": 0.0,
+        "bm25_rank": null,
+        "hybrid_score": 0.0,
+        "final_rank": null,
+        "matched_queries": [
+          "Under Atlas Logistics policy, what operational escalation procedures, customer notification requirements, and financial approval workflows must be followed when a priority customer shipment is delayed by 5 hours and incurs a EUR 1,500 contractual penalty?",
+          "Atlas Logistics operational escalation protocol and required actions for a 5 hour priority shipment delay",
+          "Atlas Logistics customer notification timeline and requirements for late priority shipments"
+        ]
+      },
+      {
+        "rank": 4,
+        "chunk_id": "487cac1e692155e7ab77e26ad4d925af60f736fe3bff7c6f3b79b3903dc2afdb",
+        "source": "financial_approval_policy.md",
+        "chunk_index": 1,
+        "distance_l2": 0.4464070200920105,
+        "vector_similarity_proxy": 0.6913683258647257,
+        "best_vector_rank": 1,
+        "rrf_score": 0.032018442622950824,
+        "rrf_rank": 4,
+        "bm25_score": 0.0,
+        "bm25_rank": null,
+        "hybrid_score": 0.0,
+        "final_rank": null,
+        "matched_queries": [
+          "Under Atlas Logistics policy, what operational escalation procedures, customer notification requirements, and financial approval workflows must be followed when a priority customer shipment is delayed by 5 hours and incurs a EUR 1,500 contractual penalty?",
+          "Atlas Logistics financial approval threshold designated approver role for EUR 1,500 penalty"
+        ]
+      },
+      {
+        "rank": 5,
+        "chunk_id": "a6705203f8f6b8544f2b2a7b27e1e8a11f76171631e0457ee38536d682dec737",
+        "source": "delivery_exception_policy.md",
+        "chunk_index": 1,
+        "distance_l2": 0.42432552576065063,
+        "vector_similarity_proxy": 0.7020866943081409,
+        "best_vector_rank": 2,
+        "rrf_score": 0.03200204813108039,
+        "rrf_rank": 5,
+        "bm25_score": 0.0,
+        "bm25_rank": null,
+        "hybrid_score": 0.0,
+        "final_rank": null,
+        "matched_queries": [
+          "Atlas Logistics operational escalation protocol and required actions for a 5 hour priority shipment delay",
+          "Atlas Logistics customer notification timeline and requirements for late priority shipments"
+        ]
+      },
+      {
+        "rank": 6,
+        "chunk_id": "4d8369a9bfc285954138e395a9f016ebdb0f791b51adaf2551d247c6e1f34fa1",
+        "source": "delivery_exception_policy.md",
+        "chunk_index": 3,
+        "distance_l2": 0.4874708652496338,
+        "vector_similarity_proxy": 0.6722820751397881,
+        "best_vector_rank": 3,
+        "rrf_score": 0.03125763125763126,
+        "rrf_rank": 6,
+        "bm25_score": 0.0,
+        "bm25_rank": null,
+        "hybrid_score": 0.0,
+        "final_rank": null,
+        "matched_queries": [
+          "Under Atlas Logistics policy, what operational escalation procedures, customer notification requirements, and financial approval workflows must be followed when a priority customer shipment is delayed by 5 hours and incurs a EUR 1,500 contractual penalty?",
+          "Atlas Logistics financial approval threshold designated approver role for EUR 1,500 penalty"
+        ]
+      },
+      {
+        "rank": 7,
+        "chunk_id": "cd53f666f5cecffffbc93a1b8d506977341b910e6968a57058d5a9b56e4da0bb",
+        "source": "customer_escalation_policy.md",
+        "chunk_index": 1,
+        "distance_l2": 0.45194727182388306,
+        "vector_similarity_proxy": 0.6887302448275802,
+        "best_vector_rank": 1,
+        "rrf_score": 0.01639344262295082,
+        "rrf_rank": 7,
+        "bm25_score": 0.0,
+        "bm25_rank": null,
+        "hybrid_score": 0.0,
+        "final_rank": null,
+        "matched_queries": [
+          "Atlas Logistics customer notification timeline and requirements for late priority shipments"
+        ]
+      },
+      {
+        "rank": 8,
+        "chunk_id": "b9e7b0999178277e51f532c56ba73874ff1eda3196c310d4711fd9f2dd1ce5fd",
+        "source": "customer_escalation_policy.md",
+        "chunk_index": 2,
+        "distance_l2": 0.4655565023422241,
+        "vector_similarity_proxy": 0.6823346615444845,
+        "best_vector_rank": 2,
+        "rrf_score": 0.016129032258064516,
+        "rrf_rank": 8,
+        "bm25_score": 0.0,
+        "bm25_rank": null,
+        "hybrid_score": 0.0,
+        "final_rank": null,
+        "matched_queries": [
+          "Atlas Logistics customer notification timeline and requirements for late priority shipments"
+        ]
+      },
+      {
+        "rank": 9,
+        "chunk_id": "aefdc5d5e978d6a42e23851c9d0862f3c53e1a3368bcd2b7250c373bcb20f4fb",
+        "source": "financial_approval_policy.md",
+        "chunk_index": 0,
+        "distance_l2": 0.48867836594581604,
+        "vector_similarity_proxy": 0.6717367719417757,
+        "best_vector_rank": 2,
+        "rrf_score": 0.016129032258064516,
+        "rrf_rank": 9,
+        "bm25_score": 0.0,
+        "bm25_rank": null,
+        "hybrid_score": 0.0,
+        "final_rank": null,
+        "matched_queries": [
+          "Atlas Logistics financial approval threshold designated approver role for EUR 1,500 penalty"
+        ]
+      },
+      {
+        "rank": 10,
+        "chunk_id": "96e392368599d0b0d3844a08ee4c545d5265cf276ea2537836ebe6a3a09cd778",
+        "source": "dispatch_operations_sop.md",
+        "chunk_index": 2,
+        "distance_l2": 0.4481216073036194,
+        "vector_similarity_proxy": 0.6905497404061147,
+        "best_vector_rank": 3,
+        "rrf_score": 0.015873015873015872,
+        "rrf_rank": 10,
+        "bm25_score": 0.0,
+        "bm25_rank": null,
+        "hybrid_score": 0.0,
+        "final_rank": null,
+        "matched_queries": [
+          "Atlas Logistics operational escalation protocol and required actions for a 5 hour priority shipment delay"
+        ]
+      },
+      {
+        "rank": 11,
+        "chunk_id": "187ee5d0a8933625f1e51d5f2482e980e3327ba162c64d2ef7ab019c15d4b8bc",
+        "source": "shipment_sla_policy.md",
+        "chunk_index": 0,
+        "distance_l2": 0.68858802318573,
+        "vector_similarity_proxy": 0.5922107620504002,
+        "best_vector_rank": 5,
+        "rrf_score": 0.015384615384615385,
+        "rrf_rank": 11,
+        "bm25_score": 0.0,
+        "bm25_rank": null,
+        "hybrid_score": 0.0,
+        "final_rank": null,
+        "matched_queries": [
+          "Atlas Logistics financial approval threshold designated approver role for EUR 1,500 penalty"
+        ]
+      }
+    ],
+    "final_ranking": [
+      {
+        "rank": 1,
+        "chunk_id": "16897761705bbe73a3be79161f3002399573d3f8dfa84fd76a3f021e3a3d269c",
+        "source": "shipment_sla_policy.md",
+        "chunk_index": 1,
+        "distance_l2": 0.41145989298820496,
+        "vector_similarity_proxy": 0.7084863019967912,
+        "best_vector_rank": 1,
+        "rrf_score": 0.04765107388058208,
+        "rrf_rank": 1,
+        "bm25_score": 20.696052822333503,
+        "bm25_rank": 8,
+        "hybrid_score": 0.0,
+        "final_rank": 1,
+        "matched_queries": [
+          "Under Atlas Logistics policy, what operational escalation procedures, customer notification requirements, and financial approval workflows must be followed when a priority customer shipment is delayed by 5 hours and incurs a EUR 1,500 contractual penalty?",
+          "Atlas Logistics operational escalation protocol and required actions for a 5 hour priority shipment delay",
+          "Atlas Logistics customer notification timeline and requirements for late priority shipments"
+        ]
+      },
+      {
+        "rank": 2,
+        "chunk_id": "d28d54b66e96ced46dd216fc30d53985aafa8756cc75e2ff42238ad2aef10b4e",
+        "source": "financial_approval_policy.md",
+        "chunk_index": 2,
+        "distance_l2": 0.4196750521659851,
+        "vector_similarity_proxy": 0.7043865414654636,
+        "best_vector_rank": 1,
+        "rrf_score": 0.047643442622950824,
+        "rrf_rank": 2,
+        "bm25_score": 24.908340596612913,
+        "bm25_rank": 3,
+        "hybrid_score": 0.0,
+        "final_rank": 2,
+        "matched_queries": [
+          "Under Atlas Logistics policy, what operational escalation procedures, customer notification requirements, and financial approval workflows must be followed when a priority customer shipment is delayed by 5 hours and incurs a EUR 1,500 contractual penalty?",
+          "Atlas Logistics operational escalation protocol and required actions for a 5 hour priority shipment delay",
+          "Atlas Logistics financial approval threshold designated approver role for EUR 1,500 penalty"
+        ]
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2ad69ccf8e8632bb4b655ca5b8be8cb6220e8ebfb34b5e1402905b3fb1c3ab07",
+        "source": "customer_escalation_policy.md",
+        "chunk_index": 0,
+        "distance_l2": 0.44265368580818176,
+        "vector_similarity_proxy": 0.693167050302717,
+        "best_vector_rank": 2,
+        "rrf_score": 0.0471386476426799,
+        "rrf_rank": 3,
+        "bm25_score": 21.626415306009115,
+        "bm25_rank": 7,
+        "hybrid_score": 0.0,
+        "final_rank": 3,
+        "matched_queries": [
+          "Under Atlas Logistics policy, what operational escalation procedures, customer notification requirements, and financial approval workflows must be followed when a priority customer shipment is delayed by 5 hours and incurs a EUR 1,500 contractual penalty?",
+          "Atlas Logistics operational escalation protocol and required actions for a 5 hour priority shipment delay",
+          "Atlas Logistics customer notification timeline and requirements for late priority shipments"
+        ]
+      },
+      {
+        "rank": 4,
+        "chunk_id": "487cac1e692155e7ab77e26ad4d925af60f736fe3bff7c6f3b79b3903dc2afdb",
+        "source": "financial_approval_policy.md",
+        "chunk_index": 1,
+        "distance_l2": 0.4464070200920105,
+        "vector_similarity_proxy": 0.6913683258647257,
+        "best_vector_rank": 1,
+        "rrf_score": 0.032018442622950824,
+        "rrf_rank": 4,
+        "bm25_score": 24.801813556898786,
+        "bm25_rank": 4,
+        "hybrid_score": 0.0,
+        "final_rank": 4,
+        "matched_queries": [
+          "Under Atlas Logistics policy, what operational escalation procedures, customer notification requirements, and financial approval workflows must be followed when a priority customer shipment is delayed by 5 hours and incurs a EUR 1,500 contractual penalty?",
+          "Atlas Logistics financial approval threshold designated approver role for EUR 1,500 penalty"
+        ]
+      },
+      {
+        "rank": 5,
+        "chunk_id": "a6705203f8f6b8544f2b2a7b27e1e8a11f76171631e0457ee38536d682dec737",
+        "source": "delivery_exception_policy.md",
+        "chunk_index": 1,
+        "distance_l2": 0.42432552576065063,
+        "vector_similarity_proxy": 0.7020866943081409,
+        "best_vector_rank": 2,
+        "rrf_score": 0.03200204813108039,
+        "rrf_rank": 5,
+        "bm25_score": 12.447045395745068,
+        "bm25_rank": 11,
+        "hybrid_score": 0.0,
+        "final_rank": 5,
+        "matched_queries": [
+          "Atlas Logistics operational escalation protocol and required actions for a 5 hour priority shipment delay",
+          "Atlas Logistics customer notification timeline and requirements for late priority shipments"
+        ]
+      }
+    ],
+    "selected_evidence": [
+      {
+        "rank": 1,
+        "chunk_id": "16897761705bbe73a3be79161f3002399573d3f8dfa84fd76a3f021e3a3d269c",
+        "source": "shipment_sla_policy.md",
+        "chunk_index": 1,
+        "distance_l2": 0.41145989298820496,
+        "vector_similarity_proxy": 0.7084863019967912,
+        "best_vector_rank": 1,
+        "rrf_score": 0.04765107388058208,
+        "rrf_rank": 1,
+        "bm25_score": 20.696052822333503,
+        "bm25_rank": 8,
+        "hybrid_score": 0.0,
+        "final_rank": 1,
+        "matched_queries": [
+          "Under Atlas Logistics policy, what operational escalation procedures, customer notification requirements, and financial approval workflows must be followed when a priority customer shipment is delayed by 5 hours and incurs a EUR 1,500 contractual penalty?",
+          "Atlas Logistics operational escalation protocol and required actions for a 5 hour priority shipment delay",
+          "Atlas Logistics customer notification timeline and requirements for late priority shipments"
+        ],
+        "text": "## Delay classification\n\nA shipment is considered at risk when its predicted arrival is more than 2 hours later than its planned arrival.\nA shipment is considered SLA-critical when the latest predicted arrival is later than the applicable SLA deadline.\nDispatchers must use the latest carrier update and available tracking data when calculating the predicted delay.\n\n## Escalation thresholds\n\nA standard shipment must be escalated to the Regional Operations Manager when its predicted delay exceeds 4 hours.\nA priority customer shipment must be escalated to the Regional Operations Manager when its predicted delay exceeds 2 hours.\nEscalation is required even when a corrective action is expected to prevent an SLA breach."
+      },
+      {
+        "rank": 2,
+        "chunk_id": "d28d54b66e96ced46dd216fc30d53985aafa8756cc75e2ff42238ad2aef10b4e",
+        "source": "financial_approval_policy.md",
+        "chunk_index": 2,
+        "distance_l2": 0.4196750521659851,
+        "vector_similarity_proxy": 0.7043865414654636,
+        "best_vector_rank": 1,
+        "rrf_score": 0.047643442622950824,
+        "rrf_rank": 2,
+        "bm25_score": 24.908340596612913,
+        "bm25_rank": 3,
+        "hybrid_score": 0.0,
+        "final_rank": 2,
+        "matched_queries": [
+          "Under Atlas Logistics policy, what operational escalation procedures, customer notification requirements, and financial approval workflows must be followed when a priority customer shipment is delayed by 5 hours and incurs a EUR 1,500 contractual penalty?",
+          "Atlas Logistics operational escalation protocol and required actions for a 5 hour priority shipment delay",
+          "Atlas Logistics financial approval threshold designated approver role for EUR 1,500 penalty"
+        ],
+        "text": "## Expedited transport\n\nAn expedited transport option may be approved when it is expected to reduce the total combination of operational cost, contractual penalty, and customer impact.\nThe incident owner must document the available options, estimated costs, expected delay reduction, and selected option.\nUrgency does not remove the approval requirement.\n\n## Customer compensation\n\nThe Customer Success Manager may propose a credit or other compensation but may not make a binding offer without approval under this policy.\nApproved compensation must be recorded in both the customer relationship management system and the incident record.\n\n## Related documents\n\nOperational escalation is governed by the Shipment SLA Policy.\nCustomer communication is governed by the Customer Escalation Policy."
+      },
+      {
+        "rank": 3,
+        "chunk_id": "2ad69ccf8e8632bb4b655ca5b8be8cb6220e8ebfb34b5e1402905b3fb1c3ab07",
+        "source": "customer_escalation_policy.md",
+        "chunk_index": 0,
+        "distance_l2": 0.44265368580818176,
+        "vector_similarity_proxy": 0.693167050302717,
+        "best_vector_rank": 2,
+        "rrf_score": 0.0471386476426799,
+        "rrf_rank": 3,
+        "bm25_score": 21.626415306009115,
+        "bm25_rank": 7,
+        "hybrid_score": 0.0,
+        "final_rank": 3,
+        "matched_queries": [
+          "Under Atlas Logistics policy, what operational escalation procedures, customer notification requirements, and financial approval workflows must be followed when a priority customer shipment is delayed by 5 hours and incurs a EUR 1,500 contractual penalty?",
+          "Atlas Logistics operational escalation protocol and required actions for a 5 hour priority shipment delay",
+          "Atlas Logistics customer notification timeline and requirements for late priority shipments"
+        ],
+        "text": "# Customer Escalation Policy\n\nDocument ID: ATL-POL-CX-003\nDepartment: Customer Experience\nDocument type: Policy\nVersion: 2.3\nEffective date: 2026-01-01\nOwner: Director of Customer Success\n\n## Purpose\n\nThis policy defines when and how Atlas Logistics communicates operational incidents to customers and internal customer owners.\n\n## Priority customer incidents\n\nEvery priority customer incident that may affect delivery must be communicated to the assigned Customer Success Manager.\nThe dispatcher must notify the Customer Success Manager within 30 minutes after confirming the risk.\nIf the shipment is expected to miss its SLA, the Customer Success Manager must be notified before the SLA expires."
+      },
+      {
+        "rank": 4,
+        "chunk_id": "487cac1e692155e7ab77e26ad4d925af60f736fe3bff7c6f3b79b3903dc2afdb",
+        "source": "financial_approval_policy.md",
+        "chunk_index": 1,
+        "distance_l2": 0.4464070200920105,
+        "vector_similarity_proxy": 0.6913683258647257,
+        "best_vector_rank": 1,
+        "rrf_score": 0.032018442622950824,
+        "rrf_rank": 4,
+        "bm25_score": 24.801813556898786,
+        "bm25_rank": 4,
+        "hybrid_score": 0.0,
+        "final_rank": 4,
+        "matched_queries": [
+          "Under Atlas Logistics policy, what operational escalation procedures, customer notification requirements, and financial approval workflows must be followed when a priority customer shipment is delayed by 5 hours and incurs a EUR 1,500 contractual penalty?",
+          "Atlas Logistics financial approval threshold designated approver role for EUR 1,500 penalty"
+        ],
+        "text": "## Approval thresholds\n\nDispatch Supervisors may approve unplanned operational costs up to and including EUR 500.\nRegional Operations Managers may approve unplanned operational costs above EUR 500 and up to and including EUR 5,000.\nThe European Finance Director must approve unplanned operational costs above EUR 5,000.\n\nPotential contractual penalties up to and including EUR 1,000 must be recorded but do not require advance approval unless compensation is offered to the customer.\nPotential contractual penalties above EUR 1,000 require approval from the Regional Operations Manager.\nPotential contractual penalties above EUR 10,000 also require approval from the European Finance Director."
+      },
+      {
+        "rank": 5,
+        "chunk_id": "a6705203f8f6b8544f2b2a7b27e1e8a11f76171631e0457ee38536d682dec737",
+        "source": "delivery_exception_policy.md",
+        "chunk_index": 1,
+        "distance_l2": 0.42432552576065063,
+        "vector_similarity_proxy": 0.7020866943081409,
+        "best_vector_rank": 2,
+        "rrf_score": 0.03200204813108039,
+        "rrf_rank": 5,
+        "bm25_score": 12.447045395745068,
+        "bm25_rank": 11,
+        "hybrid_score": 0.0,
+        "final_rank": 5,
+        "matched_queries": [
+          "Atlas Logistics operational escalation protocol and required actions for a 5 hour priority shipment delay",
+          "Atlas Logistics customer notification timeline and requirements for late priority shipments"
+        ],
+        "text": "## Immediate response\n\nThe dispatcher must contact the carrier within 15 minutes after confirming an SLA-critical exception.\nThe carrier must provide a revised arrival estimate and corrective action within 30 minutes of contact.\nThe dispatcher must assess alternative vehicles, routes, cross-docking, and expedited delivery when operationally feasible.\n\n## Incident ownership\n\nThe dispatcher owns the exception until it is resolved or formally transferred.\nThe Regional Operations Manager becomes the incident owner after an escalation under the Shipment SLA Policy.\nThe incident owner must assign actions and set the next review time."
+      }
+    ],
+    "confidence": {
+      "top1_vector_similarity": 0.7084863019967912,
+      "top1_top2_margin": 0.004099760531327545,
+      "average_topk_similarity": 0.6998989827875677,
+      "similarity_mean": 0.6815762881679984,
+      "similarity_stddev": 0.030446728192192515,
+      "similarity_min": 0.5922107620504002,
+      "similarity_max": 0.7084863019967912,
+      "top_reranker_score": 24.908340596612913,
+      "average_reranker_score": 20.895933535519877,
+      "unique_source_documents": 4,
+      "vector_reranker_rank_agreement": 0.8666666666666667,
+      "hybrid_confidence": 0.756708197864592
+    },
+    "generated_answer": "Based on the provided Atlas Logistics documentation, the following actions are required for a priority customer shipment that is expected to arrive 5 hours late and carries a EUR 1,500 contractual penalty:\n\n### 1. Escalation and Ownership\n* **Escalate to the ROM**: Because the predicted delay (5 hours) exceeds the 2-hour threshold for priority customer shipments, the shipment must be escalated to the Regional Operations Manager (ROM) [1]. Escalation is required even if corrective action is expected to prevent an SLA breach [1]. \n* **Transfer Incident Ownership**: Upon escalation, the ROM becomes the incident owner [5]. \n* **Assign Actions**: The ROM (as the incident owner) must assign actions and set the next review time [5].\n\n### 2. Customer and Internal Communications\n* **Notify Customer Success**: A shipment is considered \"at risk\" when its predicted arrival is more than 2 hours late [1]. Since this shipment is 5 hours late, the dispatcher must notify the assigned Customer Success Manager (CSM) within 30 minutes of confirming the risk [3].\n* **SLA Notification**: If the shipment is expected to miss its SLA, the CSM must be notified before the SLA expires [3].\n* **Compensation Rules**: If the CSM proposes a credit or other customer compensation, they cannot make a binding offer without approval under the financial policy [2]. Any approved compensation must be recorded in both the customer relationship management (CRM) system and the incident record [2].\n\n### 3. Financial and Penalty Approvals\n* **Penalty Approval**: Because the potential contractual penalty is EUR 1,500 (which is above EUR 1,000), it requires approval from the Regional Operations Manager [4].\n* **Expedited Transport & Unplanned Costs**: If expedited transport is considered to reduce the combination of operational cost, contractual penalty, and customer impact, the incident owner must document the available options, estimated costs, expected delay reduction, and the selected option [2]. Approval thresholds apply to these unplanned operational costs:\n  * Costs up to EUR 500 can be approved by Dispatch Supervisors [4].\n  * Costs above EUR 500 and up to EUR 5,000 must be approved by the Regional Operations Manager [4].\n  * Costs above EUR 5,000 require approval from the European Finance Director [4].\n\n### 4. Immediate Response and Carrier Actions (If SLA-Critical)\nIf the predicted arrival is later than the applicable SLA deadline, the shipment is considered SLA-critical [1], requiring these operational steps:\n* **Carrier Contact**: The dispatcher must contact the carrier within 15 minutes of confirming the SLA-critical exception [5].\n* **Carrier Response**: The carrier must provide a revised arrival estimate and corrective action within 30 minutes of being contacted [5].\n* **Alternative Options**: The dispatcher must assess alternative vehicles, routes, cross-docking, and expedited delivery when operationally feasible [5].",
+    "citations": [
+      {
+        "claim": "Escalate to the ROM: Because the predicted delay (5 hours) exceeds the 2-hour threshold for priority customer shipments, the shipment must be escalated to the Regional Operations Manager (ROM) [1].",
+        "citations": [
+          1
+        ],
+        "valid_citations": [
+          1
+        ],
+        "number_support": true,
+        "lexical_coverage": 0.6470588235294118,
+        "entailed": true
+      },
+      {
+        "claim": "Escalation is required even if corrective action is expected to prevent an SLA breach [1].",
+        "citations": [
+          1
+        ],
+        "valid_citations": [
+          1
+        ],
+        "number_support": true,
+        "lexical_coverage": 1.0,
+        "entailed": true
+      },
+      {
+        "claim": "Transfer Incident Ownership: Upon escalation, the ROM becomes the incident owner [5].",
+        "citations": [
+          5
+        ],
+        "valid_citations": [
+          5
+        ],
+        "number_support": true,
+        "lexical_coverage": 0.625,
+        "entailed": true
+      },
+      {
+        "claim": "Assign Actions: The ROM (as the incident owner) must assign actions and set the next review time [5].",
+        "citations": [
+          5
+        ],
+        "valid_citations": [
+          5
+        ],
+        "number_support": true,
+        "lexical_coverage": 0.8888888888888888,
+        "entailed": true
+      },
+      {
+        "claim": "Notify Customer Success: A shipment is considered \"at risk\" when its predicted arrival is more than 2 hours late [1].",
+        "citations": [
+          1
+        ],
+        "valid_citations": [
+          1
+        ],
+        "number_support": true,
+        "lexical_coverage": 0.7692307692307693,
+        "entailed": true
+      },
+      {
+        "claim": "Since this shipment is 5 hours late, the dispatcher must notify the assigned Customer Success Manager (CSM) within 30 minutes of confirming the risk [3].",
+        "citations": [
+          3
+        ],
+        "valid_citations": [
+          3
+        ],
+        "number_support": true,
+        "lexical_coverage": 0.7333333333333333,
+        "entailed": true
+      },
+      {
+        "claim": "SLA Notification: If the shipment is expected to miss its SLA, the CSM must be notified before the SLA expires [3].",
+        "citations": [
+          3
+        ],
+        "valid_citations": [
+          3
+        ],
+        "number_support": true,
+        "lexical_coverage": 0.7777777777777778,
+        "entailed": true
+      },
+      {
+        "claim": "Compensation Rules: If the CSM proposes a credit or other customer compensation, they cannot make a binding offer without approval under the financial policy [2].",
+        "citations": [
+          2
+        ],
+        "valid_citations": [
+          2
+        ],
+        "number_support": true,
+        "lexical_coverage": 0.6470588235294118,
+        "entailed": true
+      },
+      {
+        "claim": "Any approved compensation must be recorded in both the customer relationship management (CRM) system and the incident record [2].",
+        "citations": [
+          2
+        ],
+        "valid_citations": [
+          2
+        ],
+        "number_support": true,
+        "lexical_coverage": 0.8333333333333334,
+        "entailed": true
+      },
+      {
+        "claim": "Penalty Approval: Because the potential contractual penalty is EUR 1,500 (which is above EUR 1,000), it requires approval from the Regional Operations Manager [4].",
+        "citations": [
+          4
+        ],
+        "valid_citations": [
+          4
+        ],
+        "number_support": true,
+        "lexical_coverage": 0.6666666666666666,
+        "entailed": true
+      },
+      {
+        "claim": "Expedited Transport & Unplanned Costs: If expedited transport is considered to reduce the combination of operational cost, contractual penalty, and customer impact, the incident owner must document the available options, estimated costs, expected delay reduction, and the selected option [2].",
+        "citations": [
+          2
+        ],
+        "valid_citations": [
+          2
+        ],
+        "number_support": true,
+        "lexical_coverage": 0.9166666666666666,
+        "entailed": true
+      },
+      {
+        "claim": "Approval thresholds apply to these unplanned operational costs:",
+        "citations": [],
+        "valid_citations": [],
+        "number_support": true,
+        "lexical_coverage": 0.0,
+        "entailed": false
+      },
+      {
+        "claim": "Costs up to EUR 500 can be approved by Dispatch Supervisors [4].",
+        "citations": [
+          4
+        ],
+        "valid_citations": [
+          4
+        ],
+        "number_support": true,
+        "lexical_coverage": 0.6666666666666666,
+        "entailed": true
+      },
+      {
+        "claim": "Costs above EUR 500 and up to EUR 5,000 must be approved by the Regional Operations Manager [4].",
+        "citations": [
+          4
+        ],
+        "valid_citations": [
+          4
+        ],
+        "number_support": true,
+        "lexical_coverage": 0.8571428571428571,
+        "entailed": true
+      },
+      {
+        "claim": "Costs above EUR 5,000 require approval from the European Finance Director [4].",
+        "citations": [
+          4
+        ],
+        "valid_citations": [
+          4
+        ],
+        "number_support": true,
+        "lexical_coverage": 1.0,
+        "entailed": true
+      },
+      {
+        "claim": "If the predicted arrival is later than the applicable SLA deadline, the shipment is considered SLA-critical [1], requiring these operational steps:",
+        "citations": [
+          1
+        ],
+        "valid_citations": [
+          1
+        ],
+        "number_support": true,
+        "lexical_coverage": 0.7142857142857143,
+        "entailed": true
+      },
+      {
+        "claim": "Carrier Contact: The dispatcher must contact the carrier within 15 minutes of confirming the SLA-critical exception [5].",
+        "citations": [
+          5
+        ],
+        "valid_citations": [
+          5
+        ],
+        "number_support": true,
+        "lexical_coverage": 1.0,
+        "entailed": true
+      },
+      {
+        "claim": "Carrier Response: The carrier must provide a revised arrival estimate and corrective action within 30 minutes of being contacted [5].",
+        "citations": [
+          5
+        ],
+        "valid_citations": [
+          5
+        ],
+        "number_support": true,
+        "lexical_coverage": 0.8333333333333334,
+        "entailed": true
+      },
+      {
+        "claim": "Alternative Options: The dispatcher must assess alternative vehicles, routes, cross-docking, and expedited delivery when operationally feasible [5].",
+        "citations": [
+          5
+        ],
+        "valid_citations": [
+          5
+        ],
+        "number_support": true,
+        "lexical_coverage": 0.9166666666666666,
+        "entailed": true
+      }
+    ],
+    "evaluation_outcome": {
+      "refused": false,
+      "correct_refusal": false,
+      "incorrect_answer": false,
+      "incorrect_refusal": false,
+      "answer_correct": true,
+      "required_term_checks": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "evidence_complete": true,
+      "citation_correctness": 1.0,
+      "citation_entailment": 1.0,
+      "unsupported_claim_count": 1,
+      "claims": [
+        {
+          "claim": "Escalate to the ROM: Because the predicted delay (5 hours) exceeds the 2-hour threshold for priority customer shipments, the shipment must be escalated to the Regional Operations Manager (ROM) [1].",
+          "citations": [
+            1
+          ],
+          "valid_citations": [
+            1
+          ],
+          "number_support": true,
+          "lexical_coverage": 0.6470588235294118,
+          "entailed": true
+        },
+        {
+          "claim": "Escalation is required even if corrective action is expected to prevent an SLA breach [1].",
+          "citations": [
+            1
+          ],
+          "valid_citations": [
+            1
+          ],
+          "number_support": true,
+          "lexical_coverage": 1.0,
+          "entailed": true
+        },
+        {
+          "claim": "Transfer Incident Ownership: Upon escalation, the ROM becomes the incident owner [5].",
+          "citations": [
+            5
+          ],
+          "valid_citations": [
+            5
+          ],
+          "number_support": true,
+          "lexical_coverage": 0.625,
+          "entailed": true
+        },
+        {
+          "claim": "Assign Actions: The ROM (as the incident owner) must assign actions and set the next review time [5].",
+          "citations": [
+            5
+          ],
+          "valid_citations": [
+            5
+          ],
+          "number_support": true,
+          "lexical_coverage": 0.8888888888888888,
+          "entailed": true
+        },
+        {
+          "claim": "Notify Customer Success: A shipment is considered \"at risk\" when its predicted arrival is more than 2 hours late [1].",
+          "citations": [
+            1
+          ],
+          "valid_citations": [
+            1
+          ],
+          "number_support": true,
+          "lexical_coverage": 0.7692307692307693,
+          "entailed": true
+        },
+        {
+          "claim": "Since this shipment is 5 hours late, the dispatcher must notify the assigned Customer Success Manager (CSM) within 30 minutes of confirming the risk [3].",
+          "citations": [
+            3
+          ],
+          "valid_citations": [
+            3
+          ],
+          "number_support": true,
+          "lexical_coverage": 0.7333333333333333,
+          "entailed": true
+        },
+        {
+          "claim": "SLA Notification: If the shipment is expected to miss its SLA, the CSM must be notified before the SLA expires [3].",
+          "citations": [
+            3
+          ],
+          "valid_citations": [
+            3
+          ],
+          "number_support": true,
+          "lexical_coverage": 0.7777777777777778,
+          "entailed": true
+        },
+        {
+          "claim": "Compensation Rules: If the CSM proposes a credit or other customer compensation, they cannot make a binding offer without approval under the financial policy [2].",
+          "citations": [
+            2
+          ],
+          "valid_citations": [
+            2
+          ],
+          "number_support": true,
+          "lexical_coverage": 0.6470588235294118,
+          "entailed": true
+        },
+        {
+          "claim": "Any approved compensation must be recorded in both the customer relationship management (CRM) system and the incident record [2].",
+          "citations": [
+            2
+          ],
+          "valid_citations": [
+            2
+          ],
+          "number_support": true,
+          "lexical_coverage": 0.8333333333333334,
+          "entailed": true
+        },
+        {
+          "claim": "Penalty Approval: Because the potential contractual penalty is EUR 1,500 (which is above EUR 1,000), it requires approval from the Regional Operations Manager [4].",
+          "citations": [
+            4
+          ],
+          "valid_citations": [
+            4
+          ],
+          "number_support": true,
+          "lexical_coverage": 0.6666666666666666,
+          "entailed": true
+        },
+        {
+          "claim": "Expedited Transport & Unplanned Costs: If expedited transport is considered to reduce the combination of operational cost, contractual penalty, and customer impact, the incident owner must document the available options, estimated costs, expected delay reduction, and the selected option [2].",
+          "citations": [
+            2
+          ],
+          "valid_citations": [
+            2
+          ],
+          "number_support": true,
+          "lexical_coverage": 0.9166666666666666,
+          "entailed": true
+        },
+        {
+          "claim": "Approval thresholds apply to these unplanned operational costs:",
+          "citations": [],
+          "valid_citations": [],
+          "number_support": true,
+          "lexical_coverage": 0.0,
+          "entailed": false
+        },
+        {
+          "claim": "Costs up to EUR 500 can be approved by Dispatch Supervisors [4].",
+          "citations": [
+            4
+          ],
+          "valid_citations": [
+            4
+          ],
+          "number_support": true,
+          "lexical_coverage": 0.6666666666666666,
+          "entailed": true
+        },
+        {
+          "claim": "Costs above EUR 500 and up to EUR 5,000 must be approved by the Regional Operations Manager [4].",
+          "citations": [
+            4
+          ],
+          "valid_citations": [
+            4
+          ],
+          "number_support": true,
+          "lexical_coverage": 0.8571428571428571,
+          "entailed": true
+        },
+        {
+          "claim": "Costs above EUR 5,000 require approval from the European Finance Director [4].",
+          "citations": [
+            4
+          ],
+          "valid_citations": [
+            4
+          ],
+          "number_support": true,
+          "lexical_coverage": 1.0,
+          "entailed": true
+        },
+        {
+          "claim": "If the predicted arrival is later than the applicable SLA deadline, the shipment is considered SLA-critical [1], requiring these operational steps:",
+          "citations": [
+            1
+          ],
+          "valid_citations": [
+            1
+          ],
+          "number_support": true,
+          "lexical_coverage": 0.7142857142857143,
+          "entailed": true
+        },
+        {
+          "claim": "Carrier Contact: The dispatcher must contact the carrier within 15 minutes of confirming the SLA-critical exception [5].",
+          "citations": [
+            5
+          ],
+          "valid_citations": [
+            5
+          ],
+          "number_support": true,
+          "lexical_coverage": 1.0,
+          "entailed": true
+        },
+        {
+          "claim": "Carrier Response: The carrier must provide a revised arrival estimate and corrective action within 30 minutes of being contacted [5].",
+          "citations": [
+            5
+          ],
+          "valid_citations": [
+            5
+          ],
+          "number_support": true,
+          "lexical_coverage": 0.8333333333333334,
+          "entailed": true
+        },
+        {
+          "claim": "Alternative Options: The dispatcher must assess alternative vehicles, routes, cross-docking, and expedited delivery when operationally feasible [5].",
+          "citations": [
+            5
+          ],
+          "valid_citations": [
+            5
+          ],
+          "number_support": true,
+          "lexical_coverage": 0.9166666666666666,
+          "entailed": true
+        }
+      ]
+    },
+    "latency_ms": {
+      "planning": null,
+      "baseline_vector": 347.8160410304554,
+      "expanded_vector_total": 1156.8542909808457,
+      "fusion": 0.019041995983570814,
+      "reranking": 0.927334011066705,
+      "generation": 26664.453999954276
+    },
+    "api_calls": {
+      "planner": 1,
+      "embedding_production_path": 4,
+      "generation": 1
+    }
+  }
+}
